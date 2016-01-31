@@ -5,3 +5,41 @@
  * @version $Id$
  */
 
+import koa from 'koa';
+import staticServe from 'koa-static';
+import router from 'koa-router';
+import render from 'koa-ejs';
+import parser from 'koa-bodyparser';
+import logger from 'koa-logger';
+import onerror from 'koa-onerror';
+import path from 'path';
+
+import apiRoute from './routes/api';
+import indexRoute from './routes/index';
+
+const app = koa();
+
+onerror(app);
+
+app.use(logger());
+app.use(parser());
+app.use(staticServe('./client'));
+app.use(staticServe('./server/assets', {
+  maxage: 1296000
+}));
+
+render(app, {
+  root: path.join(__dirname, '..', 'client/dist'),
+  layout: false,
+  viewExt: 'html',
+  debug: false,
+  cache: true
+});
+
+const api = apiRoute(router);
+app.use(api.routes());
+
+const index = indexRoute(router);
+app.use(index.routes());
+
+export default app;
