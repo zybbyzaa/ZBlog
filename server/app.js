@@ -23,7 +23,7 @@ onerror(app);
 
 app.use(logger());
 app.use(parser());
-app.use(staticServe('./client'));
+app.use(staticServe('./client/dist'));
 app.use(staticServe('./server/assets', {
   maxage: 1296000
 }));

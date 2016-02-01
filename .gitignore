@@ -18,13 +18,5 @@ npm-debug.log
 
 
 # github ignore
-/resource/test
-/resource/api
-/resource/demo
-/resource/upload
-/resource/static/dist
-/be/config/prod.js
-/fe/src/config/prod.js
-/bin/scp.dev.sh
-webpack-assets.json
+/client/dist/js
 
