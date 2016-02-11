@@ -1,0 +1,31 @@
+@import url(./variable.less);
+
+.site-header {
+    background: gray url('../img/home-bg.jpg') no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    padding: 100px 0 120px;
+    h1 {
+        color: #fff;
+        font-size: 4.8rem;
+    }
+    hr {
+        max-width: 100px;
+        border: 0;
+        border-top: 1px solid #eee;
+        border-width: 4px;
+        border-color: #fff;
+    }
+    @media (min-width: screen-sm) {
+	padding: 60px 0 80px;
+        h1 {
+            font-size: 6.0rem;
+        }
+    }
+    @media (min-width: @screen-md) {
+    	padding: 80px 0 100px;
+        h1 {
+            font-size: 7.2rem;
+        }
+    }
+}

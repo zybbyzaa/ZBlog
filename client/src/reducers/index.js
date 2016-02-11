@@ -5,4 +5,4 @@
  * @version $Id$
  */
 
-export count from './count'
+export menu from './menu'

@@ -5,7 +5,6 @@
  * @version $Id$
  */
 
-export App from './App'
 export Home from './Home'
 export Article from './Article'
 export Album from './Album'

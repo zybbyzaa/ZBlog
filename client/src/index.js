@@ -12,18 +12,20 @@ import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import createHistory from 'history/lib/createHashHistory'
 import { syncHistory, routeReducer } from 'react-router-redux'
-
+import createLogger from 'redux-logger';
 import * as reducers from './reducers'
-import { App, Home, Article, Album, Music, Message, About } from './components'
+import { Home, Article, Album, Music, Message, About } from './components'
+import App from './containers/App'
 
 const history = createHistory()
 const middleware = syncHistory(history)
+const logger = createLogger();
 const reducer = combineReducers({
   ...reducers,
   routing: routeReducer
 })
 
-const finalCreateStore = applyMiddleware(middleware)(createStore)
+const finalCreateStore = applyMiddleware(middleware,logger)(createStore)
 const store = finalCreateStore(reducer)
 middleware.listenForReplays(store)
 
