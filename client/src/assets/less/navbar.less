@@ -1,8 +1,9 @@
 @import url(./variable.less);
-
-
 .navbar {
     font-size: 1.2rem;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
     a {
         color: #fff;
         text-decoration: none;
@@ -20,14 +21,28 @@
             padding: 20px;
         }
     }
-    button {
-        background-color: transparent;
-        border: 0;
+    .navbar-button {
+        background-color: rgba(255, 255, 255, .5);
+        border: 4px #fff solid;
         color: #fff;
         font-size: 1.6rem;
         display: none;
         float: right;
         outline: none;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 36px;
+        transition: background 0.2s, color 0.2s;
+        transform: scale(.8);
+        &:hover {
+            color: rgba(0, 0, 0, .1);
+            background-color: #fff;
+            border-color: rgba(0, 0, 0, .1);
+            transform: scale(1);
+        }
     }
     ul {
         float: right;
@@ -36,17 +51,21 @@
             list-style-type: none;
             float: left;
             margin: 8px;
-        }
-        li>a {
-            letter-spacing: 1px;
-        }
-        li>a.active {
-            border-bottom: 1px #fff solid;
-            padding-bottom: 4px;
+            a {
+                letter-spacing: 1px;
+                line-height: 18px;
+                &::before {
+                    padding-right: 4px;
+                }
+            }
+            a.active {
+                border-bottom: 1px #fff solid;
+                padding-bottom: 4px;
+            }
         }
     }
     @media (max-width: @screen-sm) {
-        button {
+        .navbar-button {
             display: block;
             margin: 16px 16px 0;
         }
@@ -56,9 +75,11 @@
             width: 100%;
             text-align: center;
             display: none;
+            padding-top: 8px;
             li {
                 clear: both;
                 width: 100%;
+                margin-top: 0;
             }
         }
         ul.showmeun {
@@ -66,6 +87,3 @@
         }
     }
 }
-
-
-

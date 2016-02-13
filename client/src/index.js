@@ -1,5 +1,4 @@
 /**
- * 
  * @authors zyb (zybbyzaa@163.com)
  * @date    2016-02-01 10:30:26
  * @version $Id$
@@ -13,10 +12,9 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/lib/createHashHistory'
 import { syncHistory, routeReducer } from 'react-router-redux'
 import createLogger from 'redux-logger';
+import thunk from 'redux-thunk';
 import * as reducers from './reducers'
-import { Home, Article, Album, Music, Message } from './components'
-import App from './containers/App'
-import About from './containers/About'
+import { App, Home, Article, Album, Music, Message, About } from './containers'
 
 const history = createHistory()
 const middleware = syncHistory(history)
@@ -26,7 +24,7 @@ const reducer = combineReducers({
   routing: routeReducer
 })
 
-const finalCreateStore = applyMiddleware(middleware,logger)(createStore)
+const finalCreateStore = applyMiddleware(middleware,thunk,logger)(createStore)
 const store = finalCreateStore(reducer)
 middleware.listenForReplays(store)
 
@@ -39,7 +37,6 @@ ReactDOM.render(
           <Route path="article" component={Article}/>
           <Route path="album" component={Album}/>
           <Route path="music" component={Music}/>
-          <Route path="message" component={Message}/>
           <Route path="about" component={About}/>
         </Route>
       </Router>

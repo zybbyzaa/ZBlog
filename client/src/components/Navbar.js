@@ -16,14 +16,13 @@ class Navbar extends Component {
     		<div className='navbar-brand'>
     		       <a href="/">Z&apos;s Blog</a>
     		</div>
-             <button onClick={this.props.actions.toggleMenu}><i className='icon-menu3'></i></button>
+             <a className='navbar-button icon-menu' onClick={this.props.actions.toggleMenu}></a>
     		<ul className={(this.props.isShowMenu?'showmeun':'')}>
-	    	       <li><Navlink to="/" onlyActiveOnIndex>首页</Navlink></li>
-		       <li><Navlink to="/article">文章</Navlink></li>
-		       <li><Navlink to="/album">相册</Navlink></li>
-		       <li><Navlink to="/music">音乐</Navlink></li>
-		       <li><Navlink to="/message">留言</Navlink></li>
-		       <li><Navlink to="/about">关于</Navlink></li>
+	    	       <li><Navlink to="/" onlyActiveOnIndex className='icon-home'>首页</Navlink></li>
+		       <li><Navlink to="/article" className='icon-blog'>文章</Navlink></li>
+		       <li><Navlink to="/album" className='icon-images'>相册</Navlink></li>
+		       <li><Navlink to="/music" className='icon-music'>音乐</Navlink></li>
+		       <li><Navlink to="/about" className='icon-profile'>关于</Navlink></li>
     		</ul>
     	</nav>
     );

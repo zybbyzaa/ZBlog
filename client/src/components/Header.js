@@ -22,8 +22,6 @@ class Header extends Component {
           return 'The Album';
       case 'music':
           return 'The Music';
-      case 'message':
-          return 'The Message';
       case 'about':
           return 'About Me';
       default:

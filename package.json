@@ -5,6 +5,7 @@
   "main": "./server/bin/www.js",
   "scripts": {
     "start": "npm run client-build && npm run server-start",
+    "startDB": "./server/bin/startDB.sh",
     "server-start": "NODE_ENV=production node ./server/bin/www",
     "client-watch": "node ./webpack/webpack.server.js",
     "client-build": "NODE_ENV=production node_modules/.bin/webpack -p --config ./webpack/webpack.config.prod"
@@ -20,7 +21,6 @@
   },
   "homepage": "https://github.com/zybbyzaa/ZBlog#readme",
   "dependencies": {
-    "fbjs": "^0.7.2",
     "history": "^1.14.0",
     "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
@@ -35,7 +35,8 @@
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0",
     "react-router-redux": "^2.1.0",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
