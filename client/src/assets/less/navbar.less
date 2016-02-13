@@ -1,21 +1,23 @@
 @import url(./variable.less);
+
+
 .navbar {
     font-size: 1.2rem;
     a {
         color: #fff;
         text-decoration: none;
-        padding: 20px;
         font-weight: 800;
     }
     a:hover {
         color: rgba(255, 255, 255, .8);
     }
-    div {
+    .navbar-brand {
         float: left;
         margin-top: 20px;
         a {
             font-size: 18px;
             line-height: 20px;
+            padding: 20px;
         }
     }
     button {
@@ -29,13 +31,18 @@
     }
     ul {
         float: right;
-        margin-top: 20px;
+        margin-top: 12px;
         li {
             list-style-type: none;
             float: left;
+            margin: 8px;
         }
         li>a {
             letter-spacing: 1px;
+        }
+        li>a.active {
+            border-bottom: 1px #fff solid;
+            padding-bottom: 4px;
         }
     }
     @media (max-width: @screen-sm) {
@@ -49,10 +56,8 @@
             width: 100%;
             text-align: center;
             display: none;
-            margin-top: 0;
             li {
                 clear: both;
-                margin: 2px;
                 width: 100%;
             }
         }
@@ -62,6 +67,5 @@
     }
 }
 
-.icon-menu3:before {
-    content: "\e900";
-}
+
+

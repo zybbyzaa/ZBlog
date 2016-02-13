@@ -14,8 +14,9 @@ import createHistory from 'history/lib/createHashHistory'
 import { syncHistory, routeReducer } from 'react-router-redux'
 import createLogger from 'redux-logger';
 import * as reducers from './reducers'
-import { Home, Article, Album, Music, Message, About } from './components'
+import { Home, Article, Album, Music, Message } from './components'
 import App from './containers/App'
+import About from './containers/About'
 
 const history = createHistory()
 const middleware = syncHistory(history)

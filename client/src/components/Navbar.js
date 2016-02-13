@@ -5,28 +5,32 @@
  * @version $Id$
  */
 
-import React, { Component, PropTypes as Types } from 'react';
-import { Link } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import Navlink from './Navlink'
 import '../assets/less/navbar.less';
 
 class Navbar extends Component {
   render() {
     return (
     	<nav className='navbar'>
-    		<div>
+    		<div className='navbar-brand'>
     		       <a href="/">Z&apos;s Blog</a>
     		</div>
-                            <button onClick={this.props.toggleMenu}>{this.props.isShowMenu}<i className='icon-menu3'></i></button>
+             <button onClick={this.props.actions.toggleMenu}><i className='icon-menu3'></i></button>
     		<ul className={(this.props.isShowMenu?'showmeun':'')}>
-	    	       <li><Link to="/">首页</Link></li>
-		       <li><Link to="/article">文章</Link></li>
-		       <li><Link to="/album">相册</Link></li>
-		       <li><Link to="/music">音乐</Link></li>
-		       <li><Link to="/message">留言</Link></li>
-		       <li><Link to="/about">关于</Link></li>
+	    	       <li><Navlink to="/" onlyActiveOnIndex>首页</Navlink></li>
+		       <li><Navlink to="/article">文章</Navlink></li>
+		       <li><Navlink to="/album">相册</Navlink></li>
+		       <li><Navlink to="/music">音乐</Navlink></li>
+		       <li><Navlink to="/message">留言</Navlink></li>
+		       <li><Navlink to="/about">关于</Navlink></li>
     		</ul>
     	</nav>
     );
   }
+}
+Navbar.propTypes = {
+      actions: PropTypes.object.isRequired,
+      isShowMenu: PropTypes.bool.isRequired,
 }
 export default Navbar

@@ -12,9 +12,15 @@ const initialState = {
 }
 
 export default function toggle(state = initialState, action) {
-  if(action.type === TOGGLEMMENU) {
-  	console.log("toggle");
-    return { isShowMenu: !state.isShowMenu}
-  }
-  return state
+    switch (action.type) {
+
+        case TOGGLEMMENU:
+            return {
+                ...state,
+                isShowMenu: !state.isShowMenu
+            }
+        default:
+            return state
+
+    }
 }
