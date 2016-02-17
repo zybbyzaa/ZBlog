@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @authors zyb (zybbyzaa@163.com)
  * @date    2016-02-08 23:12:44
  * @version $Id$
@@ -16,7 +16,7 @@ class Navbar extends Component {
     		<div className='navbar-brand'>
     		       <a href="/">Z&apos;s Blog</a>
     		</div>
-             <a className='navbar-button icon-menu' onClick={this.props.actions.toggleMenu}></a>
+             <a className='navbar-button icon-menu' onClick={this.props.actions.toggleNav}></a>
     		<ul className={(this.props.isShowMenu?'showmeun':'')}>
 	    	       <li><Navlink to="/" onlyActiveOnIndex className='icon-home'>首页</Navlink></li>
 		       <li><Navlink to="/article" className='icon-blog'>文章</Navlink></li>
