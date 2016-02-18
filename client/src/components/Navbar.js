@@ -12,24 +12,34 @@ import '../assets/less/navbar.less';
 class Navbar extends Component {
   render() {
     return (
-    	<nav className='navbar'>
-    		<div className='navbar-brand'>
-    		       <a href="/">Z&apos;s Blog</a>
-    		</div>
-             <a className='navbar-button icon-menu' onClick={this.props.actions.toggleNav}></a>
-    		<ul className={(this.props.isShowMenu?'showmeun':'')}>
-	    	       <li><Navlink to="/" onlyActiveOnIndex className='icon-home'>首页</Navlink></li>
-		       <li><Navlink to="/article" className='icon-blog'>文章</Navlink></li>
-		       <li><Navlink to="/album" className='icon-images'>相册</Navlink></li>
-		       <li><Navlink to="/music" className='icon-music'>音乐</Navlink></li>
-		       <li><Navlink to="/about" className='icon-profile'>关于</Navlink></li>
-    		</ul>
-    	</nav>
+        <nav className='navbar'>
+            <div className='navbar-brand'>
+                <a href="/" className='navbar-brand-link link'>Z&apos;s Blog</a>
+            </div>
+            <a className='navbar-button icon-menu link' onClick={this.props.actions.toggleNav}></a>
+            <ul className={'navbar-list ' + (this.props.isShowMenu?'showmeun':'')}>
+                <li>
+                    <Navlink to="/" onlyActiveOnIndex className='icon-home link'>首页</Navlink>
+                </li>
+                <li>
+                    <Navlink to="/article" className='icon-blog link'>文章</Navlink>
+                </li>
+                <li>
+                    <Navlink to="/album" className='icon-images link'>相册</Navlink>
+                </li>
+                <li>
+                    <Navlink to="/music" className='icon-music link'>音乐</Navlink>
+                </li>
+                <li>
+                    <Navlink to="/about" className='icon-profile link'>关于</Navlink>
+                </li>
+            </ul>
+        </nav>
     );
   }
 }
 Navbar.propTypes = {
       actions: PropTypes.object.isRequired,
-      isShowMenu: PropTypes.bool.isRequired,
+      isShowMenu: PropTypes.bool.isRequired
 }
 export default Navbar

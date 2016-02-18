@@ -4,21 +4,14 @@
     position: absolute;
     width: 100%;
     overflow: hidden;
-    a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: 800;
-    }
-    a:hover {
-        color: rgba(255, 255, 255, .8);
-    }
     .navbar-brand {
         float: left;
         margin-top: 20px;
-        a {
+        .navbar-brand-link {
             font-size: 18px;
             line-height: 20px;
             padding: 20px;
+            font-weight: 800;
         }
     }
     .navbar-button {
@@ -44,7 +37,7 @@
             transform: scale(1);
         }
     }
-    ul {
+    .navbar-list {
         float: right;
         margin-top: 12px;
         li {
@@ -54,6 +47,7 @@
             a {
                 letter-spacing: 1px;
                 line-height: 18px;
+                font-size: 14px;
                 &::before {
                     padding-right: 4px;
                 }
@@ -69,7 +63,7 @@
             display: block;
             margin: 16px 16px 0;
         }
-        ul {
+        .navbar-list {
             clear: both;
             background-color: rgba(19, 19, 19, .5);
             width: 100%;
@@ -82,7 +76,7 @@
                 margin-top: 0;
             }
         }
-        ul.showmeun {
+        .navbar-list.showmeun {
             display: block;
         }
     }

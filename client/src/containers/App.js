@@ -5,7 +5,7 @@
  * @version $Id$
  */
 
-import 'normalize.css'
+import '../assets/less/base.less'
 import '../assets/less/app.less'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -27,7 +27,7 @@ class App extends Component {
       <div>
         <Navbar actions={actions} isShowMenu={nav.isShowMenu}></Navbar>
         <Header location={location}></Header>
-        <div className='containers'>{this.props.children}</div>
+        <section className='containers'>{this.props.children}</section>
         <GoTop actions={actions} isShowTopBtn={nav.isShowTopBtn} ></GoTop>
         <Footer></Footer>
       </div>

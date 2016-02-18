@@ -30,7 +30,6 @@ middleware.listenForReplays(store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
@@ -40,11 +39,10 @@ ReactDOM.render(
           <Route path="about" component={About}/>
         </Route>
       </Router>
-    </div>
   </Provider>,
   document.getElementById('root')
 )
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
