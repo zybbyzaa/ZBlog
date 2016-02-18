@@ -7,15 +7,24 @@
 
 import '../assets/less/article.less'
 import React, { Component, PropTypes } from 'react'
+import fetch from 'node-fetch'
 
 class Article extends Component {
-  render() {
-    return (
-      <section className='site-article'>
+    componentWillMount() {
+        fetch('http://localhost:8089/api/article')
+        .then(function(res) {
+            return res.json();
+        }).then(function(json) {
+            console.log(json);
+        });
+    }
+    render() {
+        return (
+          <section className='site-article'>
 
-      </section>
-    )
-  }
+          </section>
+        )
+    }
 }
 
 export default Article

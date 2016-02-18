@@ -7,15 +7,13 @@
 import Article from '../db/Article';
 
 export default function(Router) {
-  const router = new Router({
-    prefix: '/api'
-  });
+    const router = new Router({
+        prefix: '/api'
+    });
 
   router.get('/article', function* () {
-
-        let articles = Article.getArticles();
-        console.log(articles);
-        yield this.body = {
+        let articles = yield Article.getArticles();
+        this.body = {
           articles: articles,
           msg: 'ok'
         };
@@ -23,7 +21,9 @@ export default function(Router) {
 
   router.get('/create', function* () {
         let data = {
-
+            title: 'test',
+            content: 'test111111111',
+            description: 'test'
         }
         Article.createArticle(data);
   });
