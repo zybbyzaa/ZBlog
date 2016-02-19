@@ -5,22 +5,22 @@
  * @version $Id$
  */
 
-import React, { Component, PropTypes as Types } from 'react';
+import React, { Component, PropTypes as Types } from 'react'
 import { connect } from 'react-redux'
-import { shouldComponentUpdate } from 'react-immutable-render-mixin';
+import { shouldComponentUpdate } from 'react-immutable-render-mixin'
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.shouldComponentUpdate = shouldComponentUpdate.bind(this);
-  }
-  render() {
-	  return (
-	    <div>
-	      Home Page
-	    </div>
-	  )
-  }
+    constructor(props) {
+        super(props)
+        this.shouldComponentUpdate = shouldComponentUpdate.bind(this)
+    }
+    render() {
+        return (
+          <div>
+              Home Page
+          </div>
+        )
+    }
 }
 
 export default Home

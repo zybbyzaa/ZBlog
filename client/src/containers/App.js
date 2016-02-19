@@ -18,47 +18,51 @@ import { bindActionCreators } from 'redux'
 
 class App extends Component {
 
-  componentDidMount() {
-    window.onscroll = this.handleScroll.bind(this)
-  }
-  render() {
-    const { nav, location, actions } = this.props
-    return (
-      <div>
-        <Navbar actions={actions} isShowMenu={nav.isShowMenu}></Navbar>
-        <Header location={location}></Header>
-        <section className='containers'>{this.props.children}</section>
-        <GoTop actions={actions} isShowTopBtn={nav.isShowTopBtn} ></GoTop>
-        <Footer></Footer>
-      </div>
-    )
-  }
-  handleScroll() {
-     var scrolltop=document.documentElement.scrollTop||document.body.scrollTop
-     if( scrolltop>160 && !this.props.nav.isShowTopBtn )
-        this.props.actions.showTopBtn(true)
-     if( scrolltop<160 && this.props.nav.isShowTopBtn )
-         this.props.actions.showTopBtn(false)
-  }
+    componentDidMount() {
+        window.onscroll = this.handleScroll.bind(this)
+    }
+    render() {
+        const { nav, location, actions } = this.props
+
+        return (
+          <div>
+            <Navbar actions={actions} isShowMenu={nav.isShowMenu}></Navbar>
+            <Header location={location}></Header>
+            <section className='containers'>{this.props.children}</section>
+            <GoTop actions={actions} isShowTopBtn={nav.isShowTopBtn} ></GoTop>
+            <Footer></Footer>
+          </div>
+        )
+    }
+    handleScroll() {
+        var scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+
+        if(scrolltop > 160 && !this.props.nav.isShowTopBtn){
+            this.props.actions.showTopBtn(true)
+        }
+        if(scrolltop < 160 && this.props.nav.isShowTopBtn){
+            this.props.actions.showTopBtn(false)
+        }
+    }
 }
 
 App.propTypes = {
-      nav: PropTypes.object.isRequired,
-      location: PropTypes.object.isRequired,
-      actions: PropTypes.object.isRequired
+    nav: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
-  return {
-    nav: state.nav,
-    location: state.routing.location
-  }
+    return {
+        nav: state.nav,
+        location: state.routing.location
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(navActions, dispatch)
-  }
+    return {
+        actions: bindActionCreators(navActions, dispatch)
+    }
 }
 
 export default connect(

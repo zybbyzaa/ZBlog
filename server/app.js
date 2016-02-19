@@ -5,41 +5,43 @@
  * @version $Id$
  */
 
-import koa from 'koa';
-import staticServe from 'koa-static';
-import router from 'koa-router';
-import render from 'koa-ejs';
-import parser from 'koa-bodyparser';
-import logger from 'koa-logger';
-import onerror from 'koa-onerror';
-import path from 'path';
+import koa from 'koa'
+import staticServe from 'koa-static'
+import router from 'koa-router'
+import render from 'koa-ejs'
+import parser from 'koa-bodyparser'
+import logger from 'koa-logger'
+import onerror from 'koa-onerror'
+import path from 'path'
 
-import apiRoute from './routes/api';
-import indexRoute from './routes/index';
+import apiRoute from './routes/api'
+import indexRoute from './routes/index'
 
-const app = koa();
+const app = koa()
 
-onerror(app);
+onerror(app)
 
-app.use(logger());
-app.use(parser());
-app.use(staticServe('./client/dist'));
+app.use(logger())
+app.use(parser())
+app.use(staticServe('./client/dist'))
 app.use(staticServe('./server/assets', {
-  maxage: 1296000
-}));
+    maxage: 1296000
+}))
 
 render(app, {
-  root: path.join(__dirname, '..', 'client/dist'),
-  layout: false,
-  viewExt: 'html',
-  debug: false,
-  cache: true
-});
+    root: path.join(__dirname, '..', 'client/dist'),
+    layout: false,
+    viewExt: 'html',
+    debug: false,
+    cache: true
+})
 
-const api = apiRoute(router);
-app.use(api.routes());
+const api = apiRoute(router)
 
-const index = indexRoute(router);
-app.use(index.routes());
+app.use(api.routes())
 
-export default app;
+const index = indexRoute(router)
+
+app.use(index.routes())
+
+export default app

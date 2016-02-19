@@ -5,11 +5,11 @@
  * @version $Id$
  */
 
-import { TOGGLENAV, SHOWTOPBTN } from '../constants/constants'
+import { TOGGLENAV, SHOWTOPBTN } from '../constants/nav'
 
 const initialState = {
-  isShowMenu: false,
-  isShowTopBtn: false
+    isShowMenu: false,
+    isShowTopBtn: false
 }
 
 export default function nav(state = initialState, action) {

@@ -11,12 +11,11 @@ import fetch from 'node-fetch'
 
 class Article extends Component {
     componentWillMount() {
-        fetch('http://localhost:8089/api/article')
-        .then(function(res) {
-            return res.json();
+        fetch('http://localhost:8089/api/article').then(function(res) {
+            return res.json()
         }).then(function(json) {
-            console.log(json);
-        });
+            console.log(json)
+        })
     }
     render() {
         return (

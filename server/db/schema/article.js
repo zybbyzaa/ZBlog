@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose'
 
 /**
  * 文章模型
@@ -13,45 +13,45 @@ import mongoose, { Schema } from 'mongoose';
  * @param {Date} create_time 文章创建日期
  **/
 const ArticleSchema = new Schema({
-  title: {
-    type: String,
-    default: ''
-  },
-  author: {
-    type: String,
-    default: 'Admin'
-  },
-  content: {
-    type: String,
-    default: ''
-  },
-  description: {
-    type: String,
-    default: ''
-  },
-  tags: {
-    type: Array,
-    default: []
-  },
-  views: {
-    type: Number,
-    default: 0,
-    min: 0
-  },
-  comments: {
-    type: Number,
-    default: 0,
-    min: 0
-  },
-  stars: {
-    type: Number,
-    default: 0,
-    min: 0
-  },
-  create_time: {
-    type: Date,
-    default: new Date()
-  }
-});
+    title: {
+        type: String,
+        default: ''
+    },
+    author: {
+        type: String,
+        default: 'Admin'
+    },
+    content: {
+        type: String,
+        default: ''
+    },
+    description: {
+        type: String,
+        default: ''
+    },
+    tags: {
+        type: Array,
+        default: []
+    },
+    views: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
+    comments: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
+    stars: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
+    create_time: {
+        type: Date,
+        default: new Date()
+    }
+})
 
-export default mongoose.model('Article', ArticleSchema);
+export default mongoose.model('Article', ArticleSchema)

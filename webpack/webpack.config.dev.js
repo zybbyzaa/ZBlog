@@ -1,15 +1,15 @@
 /**
- * 
+ *
  * @authors zyb (zybbyzaa@163.com)
  * @date    2016-02-01 11:53:23
  * @version $Id$
  */
 
-var webpack = require('webpack');
-var path = require('path');
-var CleanPlugin = require('clean-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var htmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack')
+var path = require('path')
+var CleanPlugin = require('clean-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -29,7 +29,6 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-                // Useful to reduce the size of client-side libraries, e.g. react
                 NODE_ENV: JSON.stringify('development')
             },
             __CLIENT__: true,
@@ -72,22 +71,22 @@ module.exports = {
             loader: ExtractTextPlugin.extract('style', 'css!less')
         }, {
             test: /\.(png|jpg)$/,
-            loader: "url-loader?limit=8192&name=img/[hash].[ext]"
+            loader: 'url-loader?limit=8192&name=img/[hash].[ext]'
         }, {
             test: /\.woff$/,
-            loader: "url?limit=10000&mimetype=application/font-woff"
+            loader: 'url?limit=10000&mimetype=application/font-woff'
         }, {
             test: /\.woff2$/,
-            loader: "url?limit=10000&mimetype=application/font-woff"
+            loader: 'url?limit=10000&mimetype=application/font-woff'
         }, {
             test: /\.ttf$/,
-            loader: "url?limit=10000&mimetype=application/octet-stream"
+            loader: 'url?limit=10000&mimetype=application/octet-stream'
         }, {
             test: /\.eot$/,
-            loader: "file"
+            loader: 'file'
         }, {
             test: /\.svg$/,
-            loader: "url?limit=10000&mimetype=image/svg+xml"
+            loader: 'url?limit=10000&mimetype=image/svg+xml'
         }]
     }
 }

@@ -5,16 +5,16 @@
  * @version $Id$
  */
 
-import { TOGGLENAV, SHOWTOPBTN } from '../constants/constants'
+import { TOGGLENAV, SHOWTOPBTN } from '../constants/nav'
 
 export function toggleNav() {
-  return {
-    type: TOGGLENAV
-  }
+    return {
+        type: TOGGLENAV
+    }
 }
 export function showTopBtn(isShow) {
-  return {
-    type: SHOWTOPBTN,
-    isShow
-  }
+    return {
+        type: SHOWTOPBTN,
+        isShow
+    }
 }
