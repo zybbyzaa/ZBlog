@@ -15,8 +15,7 @@ export default function(Router) {
         let articles = yield Article.getArticles()
 
         this.body = {
-            articles: articles,
-            msg: 'ok'
+            articles: articles
         }
     })
 

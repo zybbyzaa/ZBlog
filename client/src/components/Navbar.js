@@ -17,7 +17,7 @@ class Navbar extends Component {
                     <a href="/" className='navbar-brand-link link'>Z&aposs Blog</a>
                 </div>
                 <a className='navbar-button icon-menu link' onClick={this.props.actions.toggleNav}></a>
-                <ul className={'navbar-list ' + (this.props.isShowMenu ? 'showmeun' : '')}>
+                <ul className={(this.props.isShowMenu ? 'showmeun' : '') + ' navbar-list'}>
                     <li>
                         <Navlink to="/" onlyActiveOnIndex className='icon-home link'>首页</Navlink>
                     </li>

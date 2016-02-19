@@ -13,6 +13,7 @@ import createHistory from 'history/lib/createHashHistory'
 import { syncHistory, routeReducer } from 'react-router-redux'
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
+import req from './middleware/req'
 import * as reducers from './reducers'
 import { App, Home, Article, Album, Music, Message, About } from './containers'
 
@@ -24,7 +25,7 @@ const reducer = combineReducers({
     routing: routeReducer
 })
 
-const finalCreateStore = applyMiddleware(middleware,thunk,logger)(createStore)
+const finalCreateStore = applyMiddleware(middleware,thunk,req,logger)(createStore)
 const store = finalCreateStore(reducer)
 
 middleware.listenForReplays(store)

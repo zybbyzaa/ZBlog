@@ -6,3 +6,4 @@
  */
 
 export nav from './nav'
+export articles from './articles'

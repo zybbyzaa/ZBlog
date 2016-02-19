@@ -12,7 +12,7 @@ const initialState = {
     isShowTopBtn: false
 }
 
-export default function nav(state = initialState, action) {
+export default function nav(state = initialState, action = {}) {
     switch (action.type) {
         case TOGGLENAV:
             return {
