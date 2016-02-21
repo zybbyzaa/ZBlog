@@ -57,7 +57,7 @@ class Article extends Component {
               </div>
               { content }
               <aside className='site-content-aside'></aside>
-              <PageNavigation curPage={this.props.page.currentPage} count={this.props.articles.articles_count}></PageNavigation>
+              <PageNavigation curPage={this.props.page.currentPage} count={this.props.articles.articles_count} staPoint='/article'></PageNavigation>
           </section>
         )
     }
