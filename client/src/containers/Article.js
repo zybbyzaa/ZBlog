@@ -9,14 +9,18 @@ import '../assets/less/article.less'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
+import * as pageActions from '../actions/page'
 import { bindActionCreators } from 'redux'
 import { ScaleLoader } from 'halogen'
 import ArticleItem from '../components/ArticleItem'
+import PageNavigation from '../components/PageNavigation'
 
 class Article extends Component {
     componentDidMount() {
-        console.log(this.props.params.pageNum)
-        this.props.actions.load()
+        const pageNum = this.props.params.pageNum ? Number(this.props.params.pageNum) : 1
+
+        this.props.actions.setPageNum(pageNum)
+        this.props.actions.load(pageNum)
     }
     renderArticle(articles) {
         const item = articles.map((article, i)=>{
@@ -53,6 +57,7 @@ class Article extends Component {
               </div>
               { content }
               <aside className='site-content-aside'></aside>
+              <PageNavigation curPage={this.props.page.currentPage} count={this.props.articles.articles_count}></PageNavigation>
           </section>
         )
     }
@@ -60,13 +65,17 @@ class Article extends Component {
 
 function mapStateToProps(state) {
     return {
-        articles: state.articles
+        articles: state.articles,
+        page: state.page
     }
 }
 
 function mapDispatchToProps(dispatch) {
+    let actions = Object.assign({}, articlesActions, pageActions)
+
+    console.log(actions)
     return {
-        actions: bindActionCreators(articlesActions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     }
 }
 

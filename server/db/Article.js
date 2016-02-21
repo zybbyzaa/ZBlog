@@ -6,9 +6,12 @@ const Article = {
      *  获取所有文章
      * */
 
-    getArticles() {
+    getArticles(pageNum) {
+        const sort = {
+            _id: -1
+        }
 
-        return ArticleModel.find().limit(5).exec()
+        return ArticleModel.find().sort(sort).limit(3).skip((pageNum - 1) * 3).exec()
     },
 
     /**
@@ -17,12 +20,15 @@ const Article = {
      * @return {PostSchema} post
      * */
 
-    getArticle(id) {
+    getArticleById(id) {
         const query = {
             _id: id
         }
 
         return ArticleModel.findOne(query).exec()
+    },
+    getArticleCount() {
+        return ArticleModel.count()
     },
     createArticle(data) {
         return new ArticleModel(data).save()

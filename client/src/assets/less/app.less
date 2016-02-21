@@ -343,7 +343,7 @@ th {
         }
         .site-content-main {
             width: 50%;
-            margin-right: 20px;
+            margin: 20px auto;
             .site-content-title {
                 font-size: 1.8rem;
                 border-bottom: 2px #3ceea3 solid;
@@ -352,6 +352,24 @@ th {
         }
         .site-content-aside {
             width: 25%;
+        }
+        .site-content-pageNavigation {
+            width: 100%;
+            padding: 10px;
+            border-top: 1px #eee solid;
+            .site-content-pageNavigation-link,.site-content-pageNavigation-span {
+                text-decoration: none;
+                width: 28px;
+                height: 28px;
+                line-height: 28px;
+                display: inline-block;
+                margin: 0 4px;
+                color: #666;
+            }
+            .site-content-pageNavigation-link {
+                border: 1px #ccc solid;
+                border-radius: 6px;
+            }
         }
     }
     .site-footer {
@@ -367,4 +385,21 @@ th {
             }
         }
     }
+}
+.blog-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.blog-enter.blog-enter-active {
+  opacity: 1;
+}
+
+.blog-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.blog-leave.blog-leave-active {
+  opacity: 0;
 }

@@ -14,6 +14,7 @@ import GoTop from '../components/GoTop'
 import Footer from '../components/Footer'
 import * as navActions from '../actions/nav'
 import { bindActionCreators } from 'redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class App extends Component {
 
@@ -27,7 +28,16 @@ class App extends Component {
           <div className='site'>
             <Navbar actions={actions} isShowMenu={nav.isShowMenu}></Navbar>
             <Header location={location}></Header>
-            <div style={{flex: 1}}>{this.props.children}</div>
+            <ReactCSSTransitionGroup
+              component="div"
+              transitionName="blog"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}
+            >
+              {React.cloneElement(this.props.children, {
+                  key: this.props.location.pathname
+              })}
+            </ReactCSSTransitionGroup>
             <GoTop actions={actions} isShowTopBtn={nav.isShowTopBtn} ></GoTop>
             <Footer></Footer>
           </div>

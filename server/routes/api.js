@@ -12,6 +12,33 @@ export default function(Router) {
     })
 
     router.get('/article', function* () {
+        let articles = yield Article.getArticles(1)
+        let count = yield Article.getArticleCount()
+
+        this.body = {
+            articles: articles,
+            count: count
+        }
+    })
+    router.get('/article/page/:pageNum', function* () {
+        let pageNum = this.params.pageNum ? this.params.pageNum : 1
+        let articles = yield Article.getArticles(pageNum)
+        let count = yield Article.getArticleCount()
+
+        this.body = {
+            articles: articles,
+            count: count
+        }
+    })
+    router.get('/article/:id', function* () {
+        let id = this.params.id
+        let article = yield Article.getArticleById(id)
+
+        this.body = {
+            article: article
+        }
+    })
+    router.get('/article', function* () {
         let articles = yield Article.getArticles()
 
         this.body = {

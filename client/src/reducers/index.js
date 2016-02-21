@@ -7,3 +7,4 @@
 
 export nav from './nav'
 export articles from './articles'
+export page from './page'

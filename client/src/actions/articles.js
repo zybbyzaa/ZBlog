@@ -1,13 +1,13 @@
 import { ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL } from '../constants/articles'
 import ajax from './apis'
 
-export function load(callback) {
+export function load(pageNum, callback) {
     return {
         types: [ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL],
         promise: ()=> {
             console.log('loading')
             return ajax({
-                url: '/article',
+                url: '/article/page/' + pageNum,
                 method: 'GET'
             })
         },

@@ -3,6 +3,7 @@ import { ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL } from '../con
 const initialState = {
     articles_loading: false,
     articles: [],
+    articles_count: 0,
     error: ''
 }
 
@@ -19,7 +20,8 @@ export default function articles(state = initialState, action = {}) {
             return {
                 ...state,
                 articles_loading: false,
-                articles: result.articles
+                articles: result.articles,
+                articles_count: result.count
             }
         case ARTICLES_LOAD_FAIL:
             return {
