@@ -11,30 +11,30 @@ import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
 import { bindActionCreators } from 'redux'
 import { ScaleLoader } from 'halogen'
+import ArticleItem from '../components/ArticleItem'
 
 class Article extends Component {
     componentDidMount() {
+        console.log(this.props.params.pageNum)
         this.props.actions.load()
     }
     renderArticle(articles) {
-        if (articles.length < 1) {
-            return (
-                <section>对不起，当前没有任何文章</section>
-            )
-        }
         const item = articles.map((article, i)=>{
             return (
-              <section key={ i }>{ article.title }</section>
+                <ArticleItem key={i} article={article}></ArticleItem>
             )
         })
 
         return (
-              <section>{item}</section>
+              <section className='site-content-main'>
+                  <h3 className='site-content-title'>最新文章</h3>
+                  {(articles.length < 1 ? '对不起，当前没有任何文章' : item)}
+              </section>
         )
     }
     renderError() {
         return (
-            <section className='load-failed'>{ this.props.articles.error }</section>
+            <section className='site-content-main error'>{ this.props.articles.error }</section>
         )
     }
     render() {
@@ -47,9 +47,12 @@ class Article extends Component {
             content = this.renderError()
         }
         return (
-          <section className='site-article'>
-              <ScaleLoader size="20px" color="#666" loading={this.props.articles.articles_loading}/>
+          <section className='site-content article'>
+              <div className='site-content-loading'>
+                  <ScaleLoader size="16px" color="#3ceea3" loading={this.props.articles.articles_loading}/>
+              </div>
               { content }
+              <aside className='site-content-aside'></aside>
           </section>
         )
     }

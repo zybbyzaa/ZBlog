@@ -7,11 +7,8 @@ const Article = {
      * */
 
     getArticles() {
-        const sort = {
-            _id: -1
-        }
 
-        return ArticleModel.find().sort(sort).exec()
+        return ArticleModel.find().limit(5).exec()
     },
 
     /**

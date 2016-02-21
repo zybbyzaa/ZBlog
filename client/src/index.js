@@ -35,7 +35,10 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
-          <Route path="article" component={Article}/>
+          <Route path="article" component={Article}>
+              <Route path="page/:pageNum" component={Article}/>
+              <Route path=":id" component={Article}/>
+          </Route>
           <Route path="album" component={Album}/>
           <Route path="music" component={Music}/>
           <Route path="about" component={About}/>

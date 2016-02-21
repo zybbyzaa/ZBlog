@@ -5,7 +5,6 @@
  * @version $Id$
  */
 
-import '../assets/less/base.less'
 import '../assets/less/app.less'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -25,10 +24,10 @@ class App extends Component {
         const { nav, location, actions } = this.props
 
         return (
-          <div>
+          <div className='site'>
             <Navbar actions={actions} isShowMenu={nav.isShowMenu}></Navbar>
             <Header location={location}></Header>
-            <section className='containers'>{this.props.children}</section>
+            <div style={{flex: 1}}>{this.props.children}</div>
             <GoTop actions={actions} isShowTopBtn={nav.isShowTopBtn} ></GoTop>
             <Footer></Footer>
           </div>

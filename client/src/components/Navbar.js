@@ -14,24 +14,24 @@ class Navbar extends Component {
         return (
             <nav className='navbar'>
                 <div className='navbar-brand'>
-                    <a href="/" className='navbar-brand-link link'>Z&aposs Blog</a>
+                    <a href="/" className='navbar-brand-link link'>Z&apos;s Blog</a>
                 </div>
-                <a className='navbar-button icon-menu link' onClick={this.props.actions.toggleNav}></a>
+                <a className='navbar-button icon-navicon link' onClick={this.props.actions.toggleNav}></a>
                 <ul className={(this.props.isShowMenu ? 'showmeun' : '') + ' navbar-list'}>
                     <li>
                         <Navlink to="/" onlyActiveOnIndex className='icon-home link'>首页</Navlink>
                     </li>
                     <li>
-                        <Navlink to="/article" className='icon-blog link'>文章</Navlink>
+                        <Navlink to="/article" className='icon-book link'>文章</Navlink>
                     </li>
                     <li>
-                        <Navlink to="/album" className='icon-images link'>相册</Navlink>
+                        <Navlink to="/album" className='icon-image link'>相册</Navlink>
                     </li>
                     <li>
                         <Navlink to="/music" className='icon-music link'>音乐</Navlink>
                     </li>
                     <li>
-                        <Navlink to="/about" className='icon-profile link'>关于</Navlink>
+                        <Navlink to="/about" className='icon-info-circle link'>关于</Navlink>
                     </li>
                 </ul>
             </nav>
