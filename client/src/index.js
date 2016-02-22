@@ -15,7 +15,7 @@ import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
 import req from './middleware/req'
 import * as reducers from './reducers'
-import { App, Home, Article, Album, Music, Message, About } from './containers'
+import { App, Home, Article, ArticleList, ArticleDetail, Album, Music, Message, About } from './containers'
 
 const history = createHistory()
 const middleware = syncHistory(history)
@@ -36,8 +36,9 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
           <Route path="article" component={Article}>
-              <Route path="page/:pageNum" component={Article}/>
-              <Route path=":id" component={Article}/>
+              <IndexRoute component={ArticleList}/>
+              <Route path="page/:pageNum" component={ArticleList}/>
+              <Route path=":id" component={ArticleDetail}/>
           </Route>
           <Route path="album" component={Album}/>
           <Route path="music" component={Music}/>

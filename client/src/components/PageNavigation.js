@@ -9,7 +9,7 @@ class PageNavigation extends Component {
         if (curPage > 1) {
             link.push(<Link to={staPoint + '/page/' + (curPage - 1) } className='site-content-pageNavigation-link' title='上一页'>&lt;&lt;</Link>)
         }
-        for (var i = 1; i < totalPage + 1; i++) {
+        for (let i = 1; i < totalPage + 1; i++) {
             if (i == curPage) {
                 link.push(<span className='site-content-pageNavigation-span'>{i}</span>)
             }else {
