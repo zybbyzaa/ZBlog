@@ -5,12 +5,11 @@
  * @version $Id$
  */
 
-import '../assets/less/articledetail.less'
+import '../assets/less/article.less'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
 import { bindActionCreators } from 'redux'
-import { ScaleLoader } from 'halogen'
 import ArticleDetailItem from '../components/ArticleDetailItem'
 
 class ArticleDetail extends Component {
@@ -44,11 +43,7 @@ class ArticleDetail extends Component {
         }
         return (
           <section className='site-content article-detail'>
-              <div className='site-content-loading'>
-                  <ScaleLoader size="16px" color="#3ceea3" loading={this.props.articles.articles_loading}/>
-              </div>
               { content }
-              <aside className='site-content-aside'></aside>
           </section>
         )
     }

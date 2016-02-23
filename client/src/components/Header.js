@@ -10,12 +10,12 @@ import '../assets/less/header.less'
 
 class Header extends Component {
     handleBg() {
-        const className = this.props.location.pathname.slice(1)
-        
+        const className = this.props.location.pathname.split('/')[1]
+
         return className
     }
     handleText() {
-        const path = this.props.location.pathname.slice(1)
+        const path = this.props.location.pathname.split('/')[1]
 
         switch (path) {
             case 'article':

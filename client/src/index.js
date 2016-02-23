@@ -16,6 +16,7 @@ import thunk from 'redux-thunk'
 import req from './middleware/req'
 import * as reducers from './reducers'
 import { App, Home, Article, ArticleList, ArticleDetail, Album, Music, Message, About } from './containers'
+import Create from './containers/Create'
 
 const history = createHistory()
 const middleware = syncHistory(history)
@@ -43,6 +44,7 @@ ReactDOM.render(
           <Route path="album" component={Album}/>
           <Route path="music" component={Music}/>
           <Route path="about" component={About}/>
+          <Route path="create" component={Create}/>
         </Route>
       </Router>
   </Provider>,

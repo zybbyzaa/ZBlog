@@ -49,11 +49,13 @@ export default function(Router) {
         }
     })
 
-    router.get('/create', function* () {
+    router.post('/create', function* () {
+        let body = this.request.body
         let data = {
-            title: 'test',
-            content: 'test111111111',
-            description: 'test'
+            title: body.title,
+            content: body.content,
+            description: 'test',
+            tags: ['web','nodejs','java']
         }
 
         Article.createArticle(data)
