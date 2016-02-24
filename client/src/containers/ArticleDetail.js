@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
 import { bindActionCreators } from 'redux'
 import ArticleDetailItem from '../components/ArticleDetailItem'
+import CommentEditor from '../components/CommentEditor'
 
 class ArticleDetail extends Component {
     componentDidMount() {
@@ -24,6 +25,7 @@ class ArticleDetail extends Component {
         return (
               <section className='site-content-main'>
                   {(articles ? item : '对不起，当前没有任何文章')}
+                  <CommentEditor></CommentEditor>
               </section>
         )
     }

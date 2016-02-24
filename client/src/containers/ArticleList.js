@@ -21,6 +21,7 @@ class Article extends Component {
 
         this.props.actions.setPageNum(pageNum)
         this.props.actions.load(pageNum)
+        console.log('alist')
     }
     renderArticle(articles) {
         let item = ''
@@ -34,7 +35,6 @@ class Article extends Component {
                     <ArticleItem key={i} article={article}></ArticleItem>
                 )
             })
-            console.log('alist')
         }
         return (
               <section className='site-content-main'>

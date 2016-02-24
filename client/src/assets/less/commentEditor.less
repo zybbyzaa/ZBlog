@@ -1,0 +1,69 @@
+@import url(./variable.less);
+
+.site-content-commentEditor {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    .site-content-avatar {
+        width: 60px;
+        height: 60px;
+        border: 1px #ccc solid;
+        border-radius: 50%;
+        flex-grow: 0;
+        margin-right: 20px
+    }
+    .site-content-editor-arrow {
+        border: 10px solid transparent;
+        border-right-color: #e5e9ef;
+        width: 0;
+        height: 0;
+        &:before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border: 9px solid transparent;
+            border-right-color: #f4f5f7;
+            position: relative;
+            top: -9px;
+            right: 7px;
+        }
+        &.focus {
+            border-right-color: #00a1d6;
+        }
+    }
+    .site-content-editor {
+        flex-grow: 1;
+        font-size: 1.2rem;
+        background-color: #f4f5f7;
+        border: 1px solid #e5e9ef;
+        overflow: auto;
+        border-radius: 4px;
+        color: #555;
+        &:focus {
+            border-color: #00a1d6;
+        }
+    }
+    .site-content-button {
+        width: 70px;
+        height: 64px;
+        border-radius: 4px;
+        min-width: 60px;
+        display: block;
+        flex-grow: 0;
+        margin-left: 20px;
+        padding: 4px 15px;
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: @screen-xs) {
+    .site-content-commentEditor {
+        .site-content-button {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 20px;
+            height: 40px;
+        }
+    }
+}
