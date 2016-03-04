@@ -67,8 +67,8 @@ module.exports = {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style', 'css!postcss')
         }, {
-            test: /\.less$/,
-            loader: ExtractTextPlugin.extract('style', 'css!less')
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract('style', 'css!sass')
         }, {
             test: /\.(png|jpg)$/,
             loader: 'url-loader?limit=8192&name=img/[hash].[ext]'

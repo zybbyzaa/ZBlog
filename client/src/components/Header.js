@@ -6,7 +6,6 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import '../assets/less/header.less'
 
 class Header extends Component {
     handleBg() {
@@ -33,6 +32,7 @@ class Header extends Component {
     render() {
         return (
           <header className={'site-header ' + this.handleBg() }>
+              <a href="/" className="site-header-logo">ZBlog</a>
               <h1 className='site-header-title'>{this.handleText()}</h1>
               <hr/>
           </header>

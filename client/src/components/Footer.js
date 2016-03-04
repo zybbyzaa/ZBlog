@@ -6,7 +6,6 @@
  */
 
 import React, { Component, PropTypes as Types } from 'react'
-import '../assets/less/footer.less'
 
 class Footer extends Component {
     render() {

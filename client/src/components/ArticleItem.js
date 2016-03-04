@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import '../assets/less/articleitem.less'
+//import '../assets/less/articleitem.less'
 import { Link } from 'react-router'
 import moment from 'moment'
 

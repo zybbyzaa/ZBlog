@@ -5,42 +5,37 @@
  * @version $Id$
  */
 
-import React, { Component, PropTypes } from 'react'
+import React, {Component, PropTypes} from 'react'
 import Navlink from './Navlink'
-import '../assets/less/navbar.less'
 
 class Navbar extends Component {
     render() {
         return (
-            <nav className='navbar'>
-                <div className='navbar-brand'>
-                    <a href="/" className='navbar-brand-link link'>Z&apos;s Blog</a>
-                </div>
-                <a className='navbar-button icon-navicon link' onClick={this.props.actions.toggleNav}></a>
-                <ul className={(this.props.isShowMenu ? 'showmeun' : '') + ' navbar-list'}>
-                    <li>
-                        <Navlink to="/" onlyActiveOnIndex className='icon-home link'>首页</Navlink>
+            <nav className="site-navbar">
+                <ul className="site-navbar-list">
+                    <li data-text="首页">
+                        <Navlink to="/" onlyActiveOnIndex className='icon-home'> 首页</Navlink>
                     </li>
-                    <li>
-                        <Navlink to="/article" className='icon-book link'>文章</Navlink>
+                    <li data-text="文章">
+                        <Navlink to="/article" className='icon-book'> 文章</Navlink>
                     </li>
-                    <li>
-                        <Navlink to="/album" className='icon-image link'>相册</Navlink>
+                    <li data-text="相册">
+                        <Navlink to="/album" className='icon-image'> 相册</Navlink>
                     </li>
-                    <li>
-                        <Navlink to="/music" className='icon-music link'>音乐</Navlink>
+                    <li data-text="音乐">
+                        <Navlink to="/music" className='icon-music'> 音乐</Navlink>
                     </li>
-                    <li>
-                        <Navlink to="/about" className='icon-info-circle link'>关于</Navlink>
+                    <li data-text="关于">
+                        <Navlink to="/about" className='icon-info-circle'> 关于</Navlink>
                     </li>
                 </ul>
             </nav>
         )
     }
 }
-Navbar.propTypes = {
-    actions: PropTypes.object.isRequired,
-    isShowMenu: PropTypes.bool.isRequired
-}
+// Navbar.propTypes = {
+//     actions: PropTypes.object.isRequired,
+//     isShowMenu: PropTypes.bool.isRequired
+// }
 
 export default Navbar

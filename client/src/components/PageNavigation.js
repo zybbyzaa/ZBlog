@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import '../assets/less/pagenavigation.less'
+//import '../assets/less/pagenavigation.less'
 import { Link } from 'react-router'
 
 class PageNavigation extends Component {
