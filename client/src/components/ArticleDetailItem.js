@@ -16,7 +16,7 @@ class ArticleDetailItem extends Component {
     }
     render() {
         return (
-            <article className="site-article detail">
+            <article className="site-article">
                 <h3 className="site-article-title">{this.props.article.title}</h3>
                 <section className='site-article-meta'>
                     <div className='left'>

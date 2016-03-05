@@ -12,11 +12,7 @@ import { ScaleLoader } from 'halogen'
 
 class Article extends Component {
     render() {
-        return (
-          <section>
-              { this.props.children }
-          </section>
-        )
+        return this.props.children
     }
 }
 

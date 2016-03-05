@@ -528,6 +528,11 @@ input {
     float: right;
 }
 
+.error {
+    color: red;
+    text-align: center;
+}
+
 %clearfix::after {
     content: "";
     display: block;

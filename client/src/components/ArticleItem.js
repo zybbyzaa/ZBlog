@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-//import '../assets/less/articleitem.less'
 import { Link } from 'react-router'
 import moment from 'moment'
 
@@ -18,7 +17,6 @@ class ArticleItem extends Component {
                 <p className="site-article-content">
                     {this.props.article.description}
                 </p>
-
             </article>
         )
     }

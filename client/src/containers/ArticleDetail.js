@@ -12,6 +12,7 @@ import * as articlesActions from '../actions/articles'
 import { bindActionCreators } from 'redux'
 import ArticleDetailItem from '../components/ArticleDetailItem'
 import CommentEditor from '../components/CommentEditor'
+import { ScaleLoader } from 'halogen'
 
 class ArticleDetail extends Component {
     componentDidMount() {
@@ -22,16 +23,11 @@ class ArticleDetail extends Component {
     renderArticle(articles) {
         const item = <ArticleDetailItem article={articles}></ArticleDetailItem>
 
-        return (
-              <section className='site-content-main'>
-                  {(articles ? item : '对不起，当前没有任何文章')}
-                  <CommentEditor></CommentEditor>
-              </section>
-        )
+        return articles ? item : '对不起，当前没有任何文章'
     }
     renderError() {
         return (
-            <section className='site-content-main error'>{ this.props.articles.error }</section>
+            <p className='error'>{ this.props.articles.error }</p>
         )
     }
     render() {
@@ -44,8 +40,13 @@ class ArticleDetail extends Component {
             content = this.renderError()
         }
         return (
-          <section className='site-content article-detail'>
+          <section className='site-content-main article-detail'>
+              <h3 className='site-content-title'>文章详情</h3>
+              <div className='site-content-loading'>
+                  <ScaleLoader size="16px" color="#3ceea3" loading={this.props.articles.articles_loading}/>
+              </div>
               { content }
+              <CommentEditor></CommentEditor>
           </section>
         )
     }

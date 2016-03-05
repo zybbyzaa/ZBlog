@@ -5,7 +5,6 @@
  * @version $Id$
  */
 
-//import '../assets/less/article.less'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
@@ -36,16 +35,11 @@ class Article extends Component {
                 )
             })
         }
-        return (
-              <section className='site-content-main'>
-                  <h3 className='site-content-title'>最新文章</h3>
-                  {item}
-              </section>
-        )
+        return item
     }
     renderError() {
         return (
-            <section className='site-content-main error'>{ this.props.articles.error }</section>
+            <p className='error'>{ this.props.articles.error }</p>
         )
     }
     render() {
@@ -58,12 +52,12 @@ class Article extends Component {
             content = this.renderError()
         }
         return (
-          <section className='site-content article'>
+          <section className='site-content-main article-list'>
+              <h3 className='site-content-title'>文章列表</h3>
               <div className='site-content-loading'>
                   <ScaleLoader size="16px" color="#3ceea3" loading={this.props.articles.articles_loading}/>
               </div>
               { content }
-              <aside className='site-content-aside'></aside>
               <PageNavigation curPage={this.props.page.currentPage} count={this.props.articles.articles_count} staPoint='/article'></PageNavigation>
           </section>
         )
