@@ -22,7 +22,7 @@ $color-lite: lighten($color, 10%);
     .site-navbar-button {
         opacity: 0.6;
         background-color: transparent;
-        position: fixed;
+        position: absolute;;
         z-index: 2;
         top: 0.36rem;
         right: 0.4rem;
@@ -47,7 +47,7 @@ $color-lite: lighten($color, 10%);
             top: 16px;
             left: -4px;
             font-family: Arial, sans-serif;
-            font-size: 76px;
+            font-size: .6rem;
             line-height: 0;
             transition: opacity 0.4s ease-out;
         }
@@ -59,6 +59,7 @@ $color-lite: lighten($color, 10%);
         }
         .open & {
             opacity: 1;
+            position: fixed;
             &:before {
                 opacity: 0;
                 width: 0;
@@ -111,7 +112,7 @@ $color-lite: lighten($color, 10%);
             li {
                 cursor: pointer;
                 padding: 6px 20px;
-                font-size: .6rem;
+                font-size: .4rem;
                 opacity: 0;
                 text-align: center;
                 transform: translate3d(0,36px,0);
@@ -163,6 +164,18 @@ $color-lite: lighten($color, 10%);
             border-width: 4px;
             border-color: #fff;
         }
+        &.article {
+            background-image: url('../img/article-bg.jpg');
+        }
+        &.album {
+            background-image: url('../img/album-bg.jpg');
+        }
+        &.music {
+            background-image: url('../img/music-bg.jpg');
+        }
+        &.about {
+             background-image: url('../img/about-bg.jpg');
+        }
     }
     .site-content {
         display: flex;
@@ -184,6 +197,10 @@ $color-lite: lighten($color, 10%);
                 font-weight: 800;
                 padding-bottom: 12px;
                 border-bottom: 3px #ccc solid;
+            }
+            .site-content-loading {
+                text-align: center;
+                padding: .2rem 0;
             }
             &.article-list {
                 .site-article {
@@ -309,7 +326,7 @@ $color-lite: lighten($color, 10%);
                         display: block;
                         flex-grow: 0;
                         margin-left: 20px;
-                        padding: 4px 15px;
+                        padding: 4px 18px;
                         font-size: 0.15rem;
                         background-color: #00a1d6;
                         border: 1px #00a1d6 solid;
@@ -395,8 +412,8 @@ $color-lite: lighten($color, 10%);
         @media screen and (max-width: 960px) {
             flex-direction: column;
             .site-content-aside {
-                width: 100%;
-                margin-left: 0;
+                width: 97%;
+                margin: .2rem auto;
             }
         }
     }

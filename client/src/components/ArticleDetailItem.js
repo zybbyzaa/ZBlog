@@ -9,9 +9,11 @@ console.log(markdown)
 moment.locale('zh-cn')
 class ArticleDetailItem extends Component {
     getContent() {
+        let content = this.props.article.content ? this.props.article.content : ''
 
+        console.log(content)
         return {
-            __html: markdown.makeHtml(this.props.article.content)
+            __html: markdown.makeHtml(content)
         }
     }
     render() {

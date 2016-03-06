@@ -5,8 +5,18 @@
  * @version $Id$
  */
 
-//import React from 'react'
+import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 
-export default function Ablum() {
-    return <div>Ablum</div>
+class Ablum extends Component {
+    render() {
+        return (
+            <section className='site-content-main ablum'>
+                ablum
+            </section>
+        )
+    }
 }
+
+
+export default Ablum

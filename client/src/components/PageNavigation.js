@@ -11,7 +11,7 @@ class PageNavigation extends Component {
         }
         for (let i = 1; i < totalPage + 1; i++) {
             if (i == curPage) {
-                link.push(<span className='site-content-pageNavigation-link'>{i}</span>)
+                link.push(<a className='site-content-pageNavigation-link current'>{i}</a>)
             }else {
                 link.push(<Link to={staPoint + '/page/' + i } className='site-content-pageNavigation-link'>{i}</Link>)
             }

@@ -1,4 +1,4 @@
-import { ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL } from '../constants/articles'
+import { ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL, ARTICLE_LOAD, ARTICLE_LOAD_SUCCESS, ARTICLE_LOAD_FAIL } from '../constants/articles'
 import ajax from './apis'
 
 export function load(pageNum, callback) {
@@ -30,7 +30,7 @@ export function load(pageNum, callback) {
 }
 export function loadArticle(id, callback) {
     return {
-        types: [ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL],
+        types: [ARTICLE_LOAD, ARTICLE_LOAD_SUCCESS, ARTICLE_LOAD_FAIL],
         promise: ()=> {
             console.log('loading')
             return ajax({

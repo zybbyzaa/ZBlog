@@ -5,7 +5,6 @@
  * @version $Id$
  */
 
-//import '../assets/less/article.less'
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { ScaleLoader } from 'halogen'

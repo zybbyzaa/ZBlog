@@ -32,12 +32,12 @@ export default function(Router) {
     })
     router.get('/article/:id', function* () {
         let id = this.params.id
-        console.log(id)
+
         let article = yield Article.getArticleById(id)
         let count = yield Article.getArticleCount()
 
         this.body = {
-            articles: article,
+            article: article,
             count: count
         }
     })

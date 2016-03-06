@@ -12,18 +12,27 @@ import * as articlesActions from '../actions/articles'
 import { bindActionCreators } from 'redux'
 import ArticleDetailItem from '../components/ArticleDetailItem'
 import CommentEditor from '../components/CommentEditor'
-import { ScaleLoader } from 'halogen'
+import { ClipLoader } from 'halogen'
+import LogLifecyle from 'react-log-lifecycle'
 
-class ArticleDetail extends Component {
+class ArticleDetail extends LogLifecyle {
+    constructor(props) {
+        super(props)
+    }
     componentDidMount() {
         const id = this.props.params.id
 
         this.props.actions.loadArticle(id)
     }
-    renderArticle(articles) {
-        const item = <ArticleDetailItem article={articles}></ArticleDetailItem>
+    renderArticle(article) {
+        let item = ''
 
-        return articles ? item : '对不起，当前没有任何文章'
+        if (article) {
+            item = <ArticleDetailItem article={article}></ArticleDetailItem>
+        }else {
+            item = '对不起，当前没有任何文章'
+        }
+        return item
     }
     renderError() {
         return (
@@ -31,11 +40,11 @@ class ArticleDetail extends Component {
         )
     }
     render() {
-        const articles = this.props.articles.articles
+        const article = this.props.articles.article
         let content = ''
 
         if (!this.props.articles.articles_loading && this.props.articles.error == '') {
-            content = this.renderArticle(articles)
+            content = this.renderArticle(article)
         } else {
             content = this.renderError()
         }
@@ -43,7 +52,7 @@ class ArticleDetail extends Component {
           <section className='site-content-main article-detail'>
               <h3 className='site-content-title'>文章详情</h3>
               <div className='site-content-loading'>
-                  <ScaleLoader size="16px" color="#3ceea3" loading={this.props.articles.articles_loading}/>
+                  <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.articles.articles_loading}/>
               </div>
               { content }
               <CommentEditor></CommentEditor>

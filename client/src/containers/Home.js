@@ -11,9 +11,9 @@ import { connect } from 'react-redux'
 class Home extends Component {
     render() {
         return (
-          <div>
+          <section className='site-content-main'>
               Home Page
-          </div>
+          </section>
         )
     }
 }
