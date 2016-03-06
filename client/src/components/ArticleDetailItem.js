@@ -1,10 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-//import '../assets/less/articledetailitem.less'
 import { Link } from 'react-router'
 import moment from 'moment'
 import markdown from 'markdown-js'
-
-console.log(markdown)
 
 moment.locale('zh-cn')
 class ArticleDetailItem extends Component {

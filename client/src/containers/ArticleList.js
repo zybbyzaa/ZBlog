@@ -13,13 +13,9 @@ import {bindActionCreators} from 'redux'
 import {ClipLoader} from 'halogen'
 import ArticleItem from '../components/ArticleItem'
 import PageNavigation from '../components/PageNavigation'
-import LogLifecyle from 'react-log-lifecycle'
 
-class ArticleList extends LogLifecyle {
+class ArticleList extends Component {
 
-    constructor(props) {
-        super(props)
-    }
     componentDidMount() {
         const pageNum = this.props.params.pageNum
             ? Number(this.props.params.pageNum)

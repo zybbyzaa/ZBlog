@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-//import '../assets/less/pagenavigation.less'
 import { Link } from 'react-router'
 
 class PageNavigation extends Component {
@@ -7,17 +6,17 @@ class PageNavigation extends Component {
         let link = []
 
         if (curPage > 1) {
-            link.push(<Link to={staPoint + '/page/' + (curPage - 1) } className='site-content-pageNavigation-link' title='上一页'>&lt;&lt;</Link>)
+            link.push(<Link to={staPoint + '/page/' + (curPage - 1) } className='site-content-pageNavigation-link' title='上一页' key={0}>&lt;&lt;</Link>)
         }
         for (let i = 1; i < totalPage + 1; i++) {
             if (i == curPage) {
-                link.push(<a className='site-content-pageNavigation-link current'>{i}</a>)
+                link.push(<a className='site-content-pageNavigation-link current' key={i}>{i}</a>)
             }else {
-                link.push(<Link to={staPoint + '/page/' + i } className='site-content-pageNavigation-link'>{i}</Link>)
+                link.push(<Link to={staPoint + '/page/' + i } className='site-content-pageNavigation-link' key={i}>{i}</Link>)
             }
         }
         if (curPage < totalPage) {
-            link.push(<Link to={staPoint + '/page/' + (curPage + 1) } className='site-content-pageNavigation-link' title='下一页'>&gt;&gt;</Link>)
+            link.push(<Link to={staPoint + '/page/' + (curPage + 1) } className='site-content-pageNavigation-link' title='下一页' key={totalPage + 1}>&gt;&gt;</Link>)
         }
         return link
     }

@@ -5,7 +5,6 @@
  * @version $Id$
  */
 
-//import '../assets/less/article.less'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
@@ -13,12 +12,9 @@ import { bindActionCreators } from 'redux'
 import ArticleDetailItem from '../components/ArticleDetailItem'
 import CommentEditor from '../components/CommentEditor'
 import { ClipLoader } from 'halogen'
-import LogLifecyle from 'react-log-lifecycle'
 
-class ArticleDetail extends LogLifecyle {
-    constructor(props) {
-        super(props)
-    }
+class ArticleDetail extends Component {
+
     componentDidMount() {
         const id = this.props.params.id
 
