@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-//import '../assets/less/commentEditor.less'
 
 class CommentEditor extends Component {
     handleFocus() {
