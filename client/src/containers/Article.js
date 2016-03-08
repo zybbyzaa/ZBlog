@@ -6,7 +6,6 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
 import { ScaleLoader } from 'halogen'
 
 class Article extends Component {

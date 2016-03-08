@@ -8,7 +8,7 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import * as articlesActions from '../actions/articles'
-import * as pageActions from '../actions/page'
+import * as optionsActions from '../actions/options'
 import {bindActionCreators} from 'redux'
 import {ClipLoader} from 'halogen'
 import ArticleItem from '../components/ArticleItem'
@@ -22,7 +22,7 @@ class ArticleList extends Component {
             : 1
 
         this.props.actions.setPageNum(pageNum)
-        this.props.actions.load(pageNum)
+        this.props.actions.getArticleList()
     }
     componentWillUpdate(nextProps, nextState) {
         const oldPageNum = this.props.params.pageNum
@@ -34,9 +34,7 @@ class ArticleList extends Component {
 
         if (oldPageNum !== newPageNum) {
             this.props.actions.setPageNum(newPageNum)
-            this.props.actions.load(newPageNum)
-            console.log(oldPageNum)
-            console.log(newPageNum)
+            this.props.actions.getArticleList()
         }
     }
     renderArticle(articles) {
@@ -54,39 +52,39 @@ class ArticleList extends Component {
         }
         return item
     }
-    renderError() {
-        return (
-            <p className='error'>{this.props.articles.error}</p>
-        )
-    }
+    // renderError() {
+    //     return (
+    //         <p className='error'>{this.props.articles.error}</p>
+    //     )
+    // }
     render() {
-        const articles = this.props.articles.articles
+        const articles = this.props.articles.items
         let content = ''
 
         return (
             <section className='site-content-main article-list'>
                 <h3 className='site-content-title'>文章列表</h3>
                 <div className='site-content-loading'>
-                    <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.articles.articles_loading}/>
+                    <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.articles.isFetching}/>
                 </div>
-                {this.props.articles.articles_loading
-                    ? null
-                    : this.renderArticle(articles)}
-                {this.props.articles.error == ''
-                    ? null
-                    : this.renderError()}
-                <PageNavigation curPage={this.props.page.currentPage} count={this.props.articles.articles_count} staPoint='/article'></PageNavigation>
+                {
+                    this.props.articles.isFetching ? null : this.renderArticle(articles)
+                }
+                <PageNavigation curPage={this.props.options.currentPage} count={this.props.articles.items_count} staPoint='/article'></PageNavigation>
             </section>
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {articles: state.articles, page: state.page}
+    return {
+        articles: state.articleList.toJS(),
+        options: state.options.toJS()
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-    let actions = Object.assign({}, articlesActions, pageActions)
+    let actions = Object.assign({}, articlesActions, optionsActions)
 
     return {
         actions: bindActionCreators(actions, dispatch)

@@ -18,5 +18,4 @@ npm-debug.log
 
 
 # github ignore
-/client/dist/js
-
+/client/dist

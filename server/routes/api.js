@@ -11,25 +11,29 @@ export default function(Router) {
         prefix: '/api'
     })
 
-    router.get('/article', function* () {
-        let articles = yield Article.getArticles(1)
-        let count = yield Article.getArticleCount()
+    router.get('/articleList', function* () {
+        let currentPage = (parseInt(this.query.currentPage) > 0)?parseInt(this.query.currentPage):1;
 
-        this.body = {
-            articles: articles,
-            count: count
+        try {
+            const articles = yield Article.getArticles(currentPage)
+            const count = yield Article.getArticleCount()
+            this.status = 200;
+            this.body = { data: articles, count:count };
+        }catch(err) {
+            this.throw(err)
         }
-    })
-    router.get('/article/page/:pageNum', function* () {
-        let pageNum = this.params.pageNum ? this.params.pageNum : 1
-        let articles = yield Article.getArticles(pageNum)
-        let count = yield Article.getArticleCount()
 
-        this.body = {
-            articles: articles,
-            count: count
-        }
     })
+    // router.get('/article/page/:pageNum', function* () {
+    //     let pageNum = this.params.pageNum ? this.params.pageNum : 1
+    //     let articles = yield Article.getArticles(pageNum)
+    //     let count = yield Article.getArticleCount()
+
+    //     this.body = {
+    //         articles: articles,
+    //         count: count
+    //     }
+    // })
     router.get('/article/:id', function* () {
         let id = this.params.id
 
@@ -41,13 +45,13 @@ export default function(Router) {
             count: count
         }
     })
-    router.get('/article', function* () {
-        let articles = yield Article.getArticles()
+    // router.get('/article', function* () {
+    //     let articles = yield Article.getArticles()
 
-        this.body = {
-            articles: articles
-        }
-    })
+    //     this.body = {
+    //         articles: articles
+    //     }
+    // })
 
     router.post('/create', function* () {
         let body = this.request.body

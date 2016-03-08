@@ -9,20 +9,17 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
-import GoTop from '../components/GoTop'
+import NavbarButton from '../components/NavbarButton'
+import ScrollTop from '../components/ScrollTop'
 import Footer from '../components/Footer'
-import * as navActions from '../actions/nav'
-import {bindActionCreators} from 'redux'
 import '../assets/sass/app.scss'
 
 class App extends Component {
 
     componentDidMount() {
-        window.onscroll = this.handleScroll.bind(this)
         document.addEventListener('DOMContentLoaded', function() {
             let html = document.documentElement
             let windowWidth = 0
-
             if (html.clientWidth < 375) {
                 windowWidth = html.clientWidth
             } else if (html.clientWidth < 768) {
@@ -34,62 +31,36 @@ class App extends Component {
             } else {
                 windowWidth = 768
             }
-            console.log('windowWidth: ' + windowWidth)
             html.style.fontSize = windowWidth / 6.4 + 'px'
         }, false)
     }
-    componentWillUpdate(nextProps, nextState) {
-        console.log(nextProps.nav.isShowMenu)
-        if (nextProps.nav.isShowMenu) {
-            document.body.className = 'open'
-        } else {
-            document.body.className = ''
-        }
-    }
     render() {
-        const {nav, location, actions} = this.props
+        const {location, actions} = this.props
 
         return (
             <div className='site'>
-                <button className="site-navbar-button" onClick={this.props.actions.toggleNav}></button>
-                <Navbar></Navbar>
-                <Header location={location}></Header>
-                    <div className="site-content">
-                        { this.props.children }
-                        <aside className="site-content-aside">
-                            <GoTop actions={actions} isShowTopBtn={nav.isShowTopBtn}></GoTop>
-                        </aside>
-                    </div>
-                <Footer></Footer>
+                <NavbarButton />
+                <Navbar />
+                <Header location={location} />
+                <div className="site-content">
+                    { this.props.children }
+                    <aside className="site-content-aside">
+                    </aside>
+                </div>
+                <Footer />
+                <ScrollTop />
             </div>
         )
-    }
-    handleScroll() {
-        let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
-
-        if (scrolltop > 160 && !this.props.nav.isShowTopBtn) {
-            this.props.actions.showTopBtn(true)
-        }
-        if (scrolltop < 160 && this.props.nav.isShowTopBtn) {
-            this.props.actions.showTopBtn(false)
-        }
     }
 }
 
 App.propTypes = {
-    nav: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
-    return {nav: state.nav, location: state.routing.location}
+    return {location: state.routing.location}
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(navActions, dispatch)
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

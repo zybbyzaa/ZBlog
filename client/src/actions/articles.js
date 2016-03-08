@@ -1,57 +1,34 @@
-import { ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL, ARTICLE_LOAD, ARTICLE_LOAD_SUCCESS, ARTICLE_LOAD_FAIL } from '../constants/articles'
-import ajax from './apis'
+import {
+    REQUEST_ARTICLE_LIST,
+    ARTICLE_LIST
+} from './ActionTypes'
+import fetch from 'isomorphic-fetch'
+import querystring from 'querystring'
 
-export function load(pageNum, callback) {
+const host = __DEVELOPMENT__ ? '//localhost:8088/api/' : '/api/'
+
+function requestArticleList() {
     return {
-        types: [ARTICLES_LOAD, ARTICLES_LOAD_SUCCESS, ARTICLES_LOAD_FAIL],
-        promise: ()=> {
-            console.log('loading')
-            return ajax({
-                url: '/article/page/' + pageNum,
-                method: 'GET'
-            })
-        },
-        after: ()=>{
-            if (typeof callback === 'function') {
-                callback()
-            }
-        },
-        onData: result=>{
-            const data = result.data
-
-            return data
-        },
-        onError: error=>{
-            const err = error.data.error || '加载文章失败 ——网络好像出现了问题'
-
-            return err
-        }
+        type: REQUEST_ARTICLE_LIST
     }
 }
-export function loadArticle(id, callback) {
+
+function receiveArticleList(json) {
     return {
-        types: [ARTICLE_LOAD, ARTICLE_LOAD_SUCCESS, ARTICLE_LOAD_FAIL],
-        promise: ()=> {
-            console.log('loading')
-            return ajax({
-                url: '/article/' + id,
-                method: 'GET'
+        type: ARTICLE_LIST,
+        articleList: json.data,
+        count: json.count
+    }
+}
+export function getArticleList() {
+    return (dispatch, getState) => {
+        dispatch(requestArticleList())
+        const options = getState().options.toJS()
+
+        return fetch(host + 'articleList?' + querystring.stringify(options))
+            .then(response => response.json())
+            .then(json => {
+                return dispatch(receiveArticleList(json))
             })
-        },
-        after: ()=>{
-            if (typeof callback === 'function') {
-                callback()
-            }
-        },
-        onData: result=>{
-            const data = result.data
-
-            return data
-        },
-        onError: error=>{
-            const err = error.data.error || '加载文章失败 ——网络好像出现了问题'
-
-            return err
-        }
     }
 }

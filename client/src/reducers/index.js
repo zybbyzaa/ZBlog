@@ -5,6 +5,15 @@
  * @version $Id$
  */
 
-export nav from './nav'
-export articles from './articles'
-export page from './page'
+import { combineReducers } from 'redux'
+import { routeReducer } from 'react-router-redux'
+import options from './options'
+import {articleList} from './articles'
+
+const rootReducer = combineReducers({
+    articleList,
+    options,
+    routing: routeReducer
+})
+
+export default rootReducer
