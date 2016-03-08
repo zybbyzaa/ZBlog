@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'
 
 export default class ScrollTop extends Component {
     constructor(props){
-      super(props);
-      this.state = { isShowTop: false}
-      this.gotop = this.gotop.bind(this)
-      this.handleScroll = this.handleScroll.bind(this)
+        super(props)
+        this.state = { isShowTop: false}
+        this.gotop = this.gotop.bind(this)
+        this.handleScroll = this.handleScroll.bind(this)
     }
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll)
@@ -19,17 +19,17 @@ export default class ScrollTop extends Component {
     }
     handleScroll(){
         if (window.scrollY > 160) {
-            this.setState({ isShowTop: true });
+            this.setState({ isShowTop: true })
         } else {
-            this.setState({ isShowTop: false });
+            this.setState({ isShowTop: false })
         }
     }
     render() {
         return (
             <div>
                 {
-                    this.state.isShowTop&&
-                    <button className='goTop' onClick={this.gotop} title='返回顶部'>                     
+                    this.state.isShowTop &&
+                    <button className='goTop' onClick={this.gotop} title='返回顶部'>
                         <i className='icon-arrow-up'></i>
                     </button>
                 }

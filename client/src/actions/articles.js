@@ -25,9 +25,9 @@ export function getArticleList() {
         dispatch(requestArticleList())
         const options = getState().options.toJS()
 
-        return fetch(host + 'articleList?' + querystring.stringify(options))
-            .then(response => response.json())
-            .then(json => {
+        return fetch(host + 'articleList?' + querystring.stringify(options)).
+            then(response => response.json()).
+            then(json => {
                 return dispatch(receiveArticleList(json))
             })
     }

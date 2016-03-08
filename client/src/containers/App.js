@@ -20,6 +20,7 @@ class App extends Component {
         document.addEventListener('DOMContentLoaded', function() {
             let html = document.documentElement
             let windowWidth = 0
+
             if (html.clientWidth < 375) {
                 windowWidth = html.clientWidth
             } else if (html.clientWidth < 768) {
@@ -55,7 +56,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    location: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {

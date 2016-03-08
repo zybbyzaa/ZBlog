@@ -33,9 +33,5 @@ class Navbar extends Component {
         )
     }
 }
-// Navbar.propTypes = {
-//     actions: PropTypes.object.isRequired,
-//     isShowMenu: PropTypes.bool.isRequired
-// }
 
 export default Navbar
