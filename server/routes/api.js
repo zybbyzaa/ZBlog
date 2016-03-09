@@ -44,12 +44,12 @@ export default function(Router) {
                 this.throw(err)
             }
     })
-    
-    router.post('/create', function*() {
+
+    router.get('/create', function*() {
         let body = this.request.body
         let data = {
-            title: body.title,
-            content: body.content,
+            title: 'test',
+            content: 'sssssssssssssssssssssss',
             description: 'test',
             tags: ['web', 'nodejs', 'java']
         }
