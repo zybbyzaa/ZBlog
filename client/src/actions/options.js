@@ -1,8 +1,15 @@
-import { PAGENUM } from './ActionTypes'
+import { CHANGEPAGENUM, TOGGLENAV } from './ActionTypes'
 
-export function setPageNum(num) {
+export function changePageNum(pageNum) {
     return {
-        type: PAGENUM,
-        num
+        type: CHANGEPAGENUM,
+        pageNum
+    }
+}
+
+export function toggleNav(isShowNav) {
+    return {
+        type: TOGGLENAV,
+        isShowNav
     }
 }

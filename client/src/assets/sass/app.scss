@@ -118,9 +118,14 @@ $color-lite: lighten($color, 10%);
                 text-align: center;
                 transform: translate3d(0, 36px, 0);
                 a {
-                    color: #fff;
+                    color: rgba(255,255,255,.8);
+                    display: block;
                     &:hover {
                         text-shadow: 2px 2px 8px rgba(0, 0, 0, .9);
+                        transform: scale(1.2);
+                    }
+                    &.active {
+                        text-shadow: -1px -1px 0 #fff,1px 1px 0 #333,1px 1px 0 #444;
                     }
                 }
                 .open & {
@@ -430,7 +435,77 @@ $color-lite: lighten($color, 10%);
         bottom: 32px;
     }
 }
-
+.login-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(13,13,13,.84);
+    display: flex;
+    flex-direction: column;
+    .login-heading {
+        margin: 0;
+        color: #fff;
+        padding: .2rem;
+        font-size: 50px;
+    }
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        .login-panel {
+            padding: 2vh;
+            width: 40vw;
+            height: 25vh;
+            border-radius: 12px;
+            border: 1px #ccc solid;
+            background-color: rgba(255,255,255,.9);
+            position: relative;
+            flex-direction: column;
+            h3 {
+                margin: 0 0 5px 0;
+            }
+            .login-form {
+                .login-username,.login-password {
+                    display: block;
+                    height: 4vh;
+                    width: 20vw;
+                    border-radius: 1.5vh;
+                    margin-bottom: 1vh;
+                    padding: 2px 5px;
+                    border: 1px #ccc solid;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                .login-submit {
+                    position: absolute;
+                    top: 10.5vh;
+                    right: -4vh;
+                    width: 8vh;
+                    height: 8vh;
+                    border: 1px #ccc solid;
+                    border-radius: 50%;
+                }
+                hr {
+                    width: 18vw;
+                    border-top: 1px solid #ccc;
+                }
+            }
+            .login-link {
+                width: 80%;
+                height: 6vh;
+                a {
+                    display: inline-block;
+                    width: 5vh;
+                    height: 5vh;
+                    border: 1px #ccc solid;
+                    border-radius: 50%;
+                    margin: 0 5px;
+                }
+            }
+        }
+    }
+}
 @keyframes menu-animation {
     0% {
         opacity: 0;

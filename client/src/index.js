@@ -13,16 +13,26 @@ import {
     Album,
     Music,
     Message,
-    About
+    About,
+    Login
 } from './containers'
-import Create from './containers/Create'
 
 const store = configureStore()
+
+function authPage(nextState, replace) {
+    const isAuth = false
+    if(isAuth) {
+        replace({
+            pathname: '/login',
+            state: { nextPathname: nextState.location.pathname }
+        })
+    }
+}
 
 ReactDOM.render(
     <Provider store={store}>
     <Router history={browserHistory}>
-        <Route path="/" component={App}>
+        <Route path="/" component={App} onEnter={authPage}>
             <IndexRoute component={Home}/>
             <Route path="article" component={Article}>
                 <IndexRoute component={ArticleList}/>
@@ -32,8 +42,8 @@ ReactDOM.render(
             <Route path="album" component={Album}/>
             <Route path="music" component={Music}/>
             <Route path="about" component={About}/>
-            <Route path="create" component={Create}/>
         </Route>
+        <Route path="/login" component={Login} />
     </Router>
 </Provider>, document.getElementById('root'))
 

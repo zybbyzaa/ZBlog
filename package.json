@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npm run client-build && npm run server-start",
     "startDB": "./server/bin/startDB.sh",
-    "server-start": "NODE_ENV=production node ./server/bin/www",
+    "server-start": "node ./server/bin/www",
     "client-watch": "node ./webpack/webpack.server.js",
-    "client-build": "NODE_ENV=production node_modules/.bin/webpack -p --config ./webpack/webpack.config.prod"
+    "client-build": "node_modules/.bin/webpack -p --config ./webpack/webpack.config.prod"
   },
   "repository": {
     "type": "git",

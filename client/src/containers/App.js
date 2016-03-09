@@ -7,6 +7,8 @@
 
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
+import * as optionsActions from '../actions/options'
+import {bindActionCreators} from 'redux'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import NavbarButton from '../components/NavbarButton'
@@ -36,11 +38,11 @@ class App extends Component {
         }, false)
     }
     render() {
-        const {location, actions} = this.props
+        const {location, options, actions} = this.props
 
         return (
             <div className='site'>
-                <NavbarButton />
+                <NavbarButton isShowNav={options.isShowNav} toggleNav={actions.toggleNav}/>
                 <Navbar />
                 <Header location={location} />
                 <div className="site-content">
@@ -56,12 +58,23 @@ class App extends Component {
 }
 
 App.propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
+    options: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
-    return {location: state.routing.location}
+    return {
+        location: state.routing.location,
+        options: state.options.toJS()
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(optionsActions, dispatch)
+    }
 }
 
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

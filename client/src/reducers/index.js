@@ -8,10 +8,11 @@
 import { combineReducers } from 'redux'
 import { routeReducer } from 'react-router-redux'
 import options from './options'
-import {articleList} from './articles'
+import { articleList, articleDetail } from './articles'
 
 const rootReducer = combineReducers({
     articleList,
+    articleDetail,
     options,
     routing: routeReducer
 })

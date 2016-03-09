@@ -21,7 +21,7 @@ class ArticleList extends Component {
             ? Number(this.props.params.pageNum)
             : 1
 
-        this.props.actions.setPageNum(pageNum)
+        this.props.actions.changePageNum(pageNum)
         this.props.actions.getArticleList()
     }
     componentWillUpdate(nextProps, nextState) {
@@ -33,7 +33,7 @@ class ArticleList extends Component {
             : 1
 
         if (oldPageNum !== newPageNum) {
-            this.props.actions.setPageNum(newPageNum)
+            this.props.actions.changePageNum(newPageNum)
             this.props.actions.getArticleList()
         }
     }

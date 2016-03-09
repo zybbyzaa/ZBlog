@@ -18,37 +18,37 @@ class ArticleDetail extends Component {
     componentDidMount() {
         const id = this.props.params.id
 
-        this.props.actions.loadArticle(id)
+        console.log(this.props.actions)
+        this.props.actions.getArticleDetail(id)
     }
-    renderArticle(article) {
+    renderArticle(article,count) {
         let item = ''
 
-        if (article) {
+        if (count > 0) {
             item = <ArticleDetailItem article={article}></ArticleDetailItem>
         }else {
             item = '对不起，当前没有任何文章'
         }
         return item
     }
-    renderError() {
-        return (
-            <p className='error'>{ this.props.articles.error }</p>
-        )
-    }
+    // renderError() {
+    //     return (
+    //         <p className='error'>{ this.props.articles.error }</p>
+    //     )
+    // }
     render() {
-        const article = this.props.articles.article
+        const article = this.props.articles.items
+        const count =this.props.articles.items_count
         let content = ''
 
-        if (!this.props.articles.articles_loading && this.props.articles.error == '') {
-            content = this.renderArticle(article)
-        } else {
-            content = this.renderError()
+        if (!this.props.articles.isFetching) {
+            content = this.renderArticle(article,count)
         }
         return (
           <section className='site-content-main article-detail'>
               <h3 className='site-content-title'>文章详情</h3>
               <div className='site-content-loading'>
-                  <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.articles.articles_loading}/>
+                  <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.articles.isFetching}/>
               </div>
               { content }
               <CommentEditor></CommentEditor>
@@ -59,7 +59,7 @@ class ArticleDetail extends Component {
 
 function mapStateToProps(state) {
     return {
-        articles: state.articles
+        articles: state.articleDetail.toJS()
     }
 }
 

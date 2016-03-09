@@ -28,35 +28,23 @@ export default function(Router) {
         }
 
     })
-        // router.get('/article/page/:pageNum', function* () {
-        //     let pageNum = this.params.pageNum ? this.params.pageNum : 1
-        //     let articles = yield Article.getArticles(pageNum)
-        //     let count = yield Article.getArticleCount()
-
-    //     this.body = {
-    //         articles: articles,
-    //         count: count
-    //     }
-    // })
-    router.get('/article/:id', function*() {
+    router.get('/articleDetail/:id', function*() {
             let id = this.params.id
 
-            let article = yield Article.getArticleById(id)
-            let count = yield Article.getArticleCount()
+            try {
+                const article = yield Article.getArticleById(id)
+                const count = article ? 1 : 0
 
-            this.body = {
-                article: article,
-                count: count
+                this.status = 200
+                this.body = {
+                    data: article,
+                    count: count
+                }
+            } catch (err) {
+                this.throw(err)
             }
-        })
-        // router.get('/article', function* () {
-        //     let articles = yield Article.getArticles()
-
-    //     this.body = {
-    //         articles: articles
-    //     }
-    // })
-
+    })
+    
     router.post('/create', function*() {
         let body = this.request.body
         let data = {
