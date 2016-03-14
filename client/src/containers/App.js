@@ -41,7 +41,7 @@ class App extends Component {
         const {location, options, actions} = this.props
 
         return (
-            <div className='site'>
+            <div className='site' onClick={this.handleClick.bind(this)}>
                 <NavbarButton isShowNav={options.isShowNav} toggleNav={actions.toggleNav}/>
                 <Navbar />
                 <Header location={location} />
@@ -54,6 +54,12 @@ class App extends Component {
                 <ScrollTop />
             </div>
         )
+    }
+    handleClick(e) {
+        if(this.props.options.isShowNav) {
+            document.body.className = ''
+            this.props.actions.toggleNav(!this.props.options.isShowNav)
+        }
     }
 }
 

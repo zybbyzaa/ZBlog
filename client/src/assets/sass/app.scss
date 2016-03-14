@@ -380,6 +380,29 @@ $color-lite: lighten($color, 10%);
                     }
                 }
             }
+            .site-content-preNextNavigation {
+                text-align: center;
+                margin-top: 0.2rem;
+                padding: 0.2rem;
+                border-top: 1px #eee solid;
+                .site-content-preNextNavigation-link {
+                    font-size: 0.2rem;
+                    color: #999;
+                    display: inline-block;
+                    border: 1px #ccc solid;
+                    margin-right: .1rem;
+                    padding: .1rem .15rem;
+                    &:hover {
+                        font-weight: 800;
+                    }
+                }
+            }
+            .return-btn {
+                float: right;
+                color: #747F8C;
+                font-size: .2rem;
+                font-weight: 800;
+            }
         }
         .site-content-aside {
             width: 240px;
@@ -465,7 +488,7 @@ $color-lite: lighten($color, 10%);
                 margin: 0 0 5px 0;
             }
             .login-form {
-                .login-username,.login-password {
+                .login-email,.login-password {
                     display: block;
                     height: 4vh;
                     width: 20vw;

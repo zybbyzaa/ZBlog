@@ -2,12 +2,13 @@ import {
     REQUEST_ARTICLE_LIST,
     ARTICLE_LIST,
     REQUEST_ARTICLE_DETAIL,
-    ARTICLE_DETAIL
+    ARTICLE_DETAIL,
+    ARTICLE_PRENEXT
 } from './ActionTypes'
 import fetch from 'isomorphic-fetch'
 import querystring from 'querystring'
 
-const host = __DEVELOPMENT__ ? '//localhost:8088/api/' : '/api/'
+const host = __DEVELOPMENT__ ? '//localhost:8088/api/article/' : '/api/article/'
 
 function requestArticleList() {
     return {
@@ -56,6 +57,22 @@ export function getArticleDetail(id) {
             then(response => response.json()).
             then(json => {
                 return dispatch(receiveArticleDetail(json))
+            })
+    }
+}
+
+function receiveArticlePreNext(json) {
+    return {
+        type: ARTICLE_PRENEXT,
+        prenextArticle: json.data
+    }
+}
+export function getArticlePreNext(id) {
+    return (dispatch, getState) => {
+        return fetch(host + 'articleDetail/' + id + '/preNextArticle').
+            then(response => response.json()).
+            then(json => {
+                return dispatch(receiveArticlePreNext(json))
             })
     }
 }

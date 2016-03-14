@@ -6,7 +6,7 @@ export default class NavbarButton extends Component {
         this.handleClick = this.handleClick.bind(this)
     }
     handleClick(e) {
-        e.preventDefault()
+        e.stopPropagation()
         if (this.props.isShowNav) {
             document.body.className = ''
         } else {

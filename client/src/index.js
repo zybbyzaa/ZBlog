@@ -16,23 +16,25 @@ import {
     About,
     Login
 } from './containers'
+import { redirectToBack, redirectToLogin } from './utils/authService'
 
 const store = configureStore()
 
-function authPage(nextState, replace) {
-    const isAuth = false
-    if(isAuth) {
-        replace({
-            pathname: '/login',
-            state: { nextPathname: nextState.location.pathname }
-        })
-    }
-}
+// function authPage(nextState, replace) {
+//     const isAuth = true
+//
+//     if(!isAuth) {
+//         replace({
+//             pathname: '/login',
+//             state: { nextPathname: nextState.location.pathname }
+//         })
+//     }
+// }
 
 ReactDOM.render(
     <Provider store={store}>
     <Router history={browserHistory}>
-        <Route path="/" component={App} onEnter={authPage}>
+        <Route path="/" component={App} onEnter={redirectToLogin}>
             <IndexRoute component={Home}/>
             <Route path="article" component={Article}>
                 <IndexRoute component={ArticleList}/>
@@ -43,7 +45,7 @@ ReactDOM.render(
             <Route path="music" component={Music}/>
             <Route path="about" component={About}/>
         </Route>
-        <Route path="/login" component={Login} />
+        <Route path="/login" component={Login} onEnter={redirectToBack}/>
     </Router>
 </Provider>, document.getElementById('root'))
 

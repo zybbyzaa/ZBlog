@@ -10,16 +10,27 @@ import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
 import { bindActionCreators } from 'redux'
 import ArticleDetailItem from '../components/ArticleDetailItem'
+import PreNextNavigation from '../components/PreNextNavigation'
 import CommentEditor from '../components/CommentEditor'
 import { ClipLoader } from 'halogen'
+import { Link } from 'react-router'
 
 class ArticleDetail extends Component {
 
     componentDidMount() {
         const id = this.props.params.id
 
-        console.log(this.props.actions)
         this.props.actions.getArticleDetail(id)
+        this.props.actions.getArticlePreNext(id)
+    }
+    componentWillUpdate(nextProps, nextState) {
+        const oldId = this.props.params.id
+        const newId = nextProps.params.id
+
+        if (oldId !== newId) {
+            this.props.actions.getArticleDetail(newId)
+            this.props.actions.getArticlePreNext(newId)
+        }
     }
     renderArticle(article,count) {
         let item = ''
@@ -37,20 +48,21 @@ class ArticleDetail extends Component {
     //     )
     // }
     render() {
-        const article = this.props.articles.items
-        const count =this.props.articles.items_count
+        const article = this.props.article.items
+        const count =this.props.article.items_count
         let content = ''
 
-        if (!this.props.articles.isFetching) {
+        if (!this.props.article.isFetching) {
             content = this.renderArticle(article,count)
         }
         return (
           <section className='site-content-main article-detail'>
-              <h3 className='site-content-title'>文章详情</h3>
+              <h3 className='site-content-title'>文章详情<Link to="/article" className='return-btn' title='返回文章列表'>-&gt;</Link></h3>
               <div className='site-content-loading'>
-                  <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.articles.isFetching}/>
+                  <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.article.isFetching}/>
               </div>
               { content }
+              <PreNextNavigation preArticle={this.props.articlePreNext.prev} nextArticle={this.props.articlePreNext.next}></PreNextNavigation>
               <CommentEditor></CommentEditor>
           </section>
         )
@@ -59,7 +71,8 @@ class ArticleDetail extends Component {
 
 function mapStateToProps(state) {
     return {
-        articles: state.articleDetail.toJS()
+        article: state.articleDetail.toJS(),
+        articlePreNext: state.prenextArticle.toJS()
     }
 }
 

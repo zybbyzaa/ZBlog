@@ -10,7 +10,7 @@ class ArticleItem extends Component {
                 <Link to={'/article/' + this.props.article._id} className="site-article-title">{this.props.article.title}</Link>
                 <section className='site-article-meta'>
                     <span><i className='icon-user'></i> {this.props.article.author}</span>
-                    <span><i className='icon-calendar'></i> {moment(this.props.article.create_time).fromNow()}</span>
+                    <span><i className='icon-calendar'></i> {moment(this.props.article.update_time).fromNow()}</span>
                     <span><i className='icon-comments'></i> 评论:{this.props.article.comments}</span>
                     <span><i className='icon-fire'></i> 浏览:{this.props.article.views}</span>
                 </section>

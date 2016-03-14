@@ -33,18 +33,17 @@ const ArticleSchema = new Schema({
     },
     create_time: {
         type: Date,
-        default: new Date()
+        default: Date.now
     },
     update_time: {
         type: Date,
-        default: new Date()
+        default: Date.now
     }
 })
 
 ArticleSchema.virtual('info').get(
     function() {
         return {
-            '_id': this._id,
             'title': this.title,
             'content': this.content,
             'description': this.description,

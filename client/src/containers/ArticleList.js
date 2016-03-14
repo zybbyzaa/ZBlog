@@ -37,10 +37,10 @@ class ArticleList extends Component {
             this.props.actions.getArticleList()
         }
     }
-    renderArticle(articles) {
+    renderArticle(articles, count) {
         let item = ''
 
-        if (articles.length < 1) {
+        if (count < 1) {
             item = '对不起，当前没有任何文章'
 
         } else {
@@ -59,6 +59,7 @@ class ArticleList extends Component {
     // }
     render() {
         const articles = this.props.articles.items
+        const count = this.props.articles.items_count
         let content = ''
 
         return (
@@ -68,9 +69,9 @@ class ArticleList extends Component {
                     <ClipLoader size="20px" color="rgba(34,34,34,.5)" loading={this.props.articles.isFetching}/>
                 </div>
                 {
-                    this.props.articles.isFetching ? null : this.renderArticle(articles)
+                    this.props.articles.isFetching ? null : this.renderArticle(articles, count)
                 }
-                <PageNavigation curPage={this.props.options.currentPage} count={this.props.articles.items_count} staPoint='/article'></PageNavigation>
+                <PageNavigation curPage={this.props.options.currentPage} count={count} staPoint='/article'></PageNavigation>
             </section>
         )
     }

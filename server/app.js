@@ -14,8 +14,8 @@ import logger from 'koa-logger'
 import onerror from 'koa-onerror'
 import path from 'path'
 
-import apiRoute from './routes/api'
-import indexRoute from './routes/index'
+import routes from './routes'
+
 
 const app = koa()
 
@@ -36,12 +36,6 @@ render(app, {
     cache: true
 })
 
-const api = apiRoute(router)
-
-app.use(api.routes())
-
-const index = indexRoute(router)
-
-app.use(index.routes())
+routes(app)
 
 export default app

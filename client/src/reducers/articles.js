@@ -2,7 +2,8 @@ import {
     REQUEST_ARTICLE_LIST,
     ARTICLE_LIST,
     REQUEST_ARTICLE_DETAIL,
-    ARTICLE_DETAIL
+    ARTICLE_DETAIL,
+    ARTICLE_PRENEXT
 } from '../actions/ActionTypes'
 import { createReducer } from 'redux-immutablejs'
 import { fromJS, Map, List } from 'immutable'
@@ -33,4 +34,10 @@ export const articleDetail = createReducer(initialState,{
             items_count: action.count
         })
     }
+})
+
+export const prenextArticle = createReducer(fromJS({
+    'next':{},'prev':{}
+}),{
+    [ARTICLE_PRENEXT]:(state,action)=>state.merge(action.prenextArticle)
 })

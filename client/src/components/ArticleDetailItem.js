@@ -8,7 +8,6 @@ class ArticleDetailItem extends Component {
     getContent() {
         let content = this.props.article.content ? this.props.article.content : ''
 
-        console.log(content)
         return {
             __html: markdown.makeHtml(content)
         }
@@ -20,7 +19,7 @@ class ArticleDetailItem extends Component {
                 <section className='site-article-meta'>
                     <div className='left'>
                         <span><i className='icon-user'></i> {this.props.article.author}</span>
-                        <span><i className='icon-calendar'></i> {moment(this.props.article.create_time).fromNow()}</span>
+                        <span><i className='icon-calendar'></i> {moment(this.props.article.update_time).fromNow()}</span>
                         <span><i className='icon-tags'></i> 标签:{this.props.article.tags}</span>
                     </div>
                     <div className='right'>

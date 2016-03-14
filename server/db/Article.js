@@ -8,7 +8,7 @@ const Article = {
 
     getArticles(pageNum) {
         const sort = {
-            _id: -1
+            update_time : -1
         }
 
         return ArticleModel.find().sort(sort).limit(3).skip((pageNum - 1) * 3).exec()
@@ -27,8 +27,16 @@ const Article = {
 
         return ArticleModel.findOne(query).exec()
     },
-    getArticleCount() {
-        return ArticleModel.count()
+    getArticleCount(id) {
+        const query = id ? { _id: id} : null 
+
+        return ArticleModel.count(query)
+    },
+    getArticlePreNext(condition,sort) {
+        return ArticleModel.find(condition).select('title').limit(1).sort(sort)
+    },
+    updateArticle(id, updateCondtion) {
+        return ArticleModel.findByIdAndUpdate(id,updateCondtion)
     },
     createArticle(data) {
         return new ArticleModel(data).save()
