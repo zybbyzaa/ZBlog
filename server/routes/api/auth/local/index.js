@@ -29,6 +29,7 @@ router.post('/', check(), function*(next) {
         }
         if(info){
             ctx.status = 403
+            console.log(info)
             return ctx.body = info
         }
         const token = signToken(user._id)

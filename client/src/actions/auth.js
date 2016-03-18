@@ -6,7 +6,8 @@ import {
     LOGOUT_USER
 } from './ActionTypes'
 import fetch from 'isomorphic-fetch'
-import { push } from 'react-router-redux'
+import { toggleLoginModal } from './options'
+import { replace } from 'react-router-redux'
 import {saveCookie,getCookie,signOut} from '../utils/authService'
 
 const host = __DEVELOPMENT__ ? '//localhost:8088/api/' : '/api/'
@@ -43,7 +44,8 @@ export function localLogin(userInfo) {
             saveCookie('token', json.token)
             dispatch(getUserInfo(json.token))
             dispatch(loginSuccess(json.token))
-            dispatch(push('/'))
+            dispatch(toggleLoginModal(false))
+            //dispatch(push('/'))
         }).catch(err => {
             return dispatch(loginFailure(err))
         })
@@ -92,6 +94,6 @@ export function logout() {
     return dispatch => {
         signOut()
         dispatch({type: LOGOUT_USER})
-        dispatch(push('/login'))
+        //dispatch(replace('/'))
     }
 }

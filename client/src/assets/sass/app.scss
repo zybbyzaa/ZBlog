@@ -279,6 +279,10 @@ $color-lite: lighten($color, 10%);
                 transition: top .3s ease-out;
                 &:hover {
                     top: 0;
+                    cursor: pointer;
+                }
+                &.logout {
+                    top: 0;
                 }
             }
         }
@@ -396,6 +400,14 @@ $color-lite: lighten($color, 10%);
                     }
                     .site-article-content {
                         font-size: 0.24rem;
+                    }
+                }
+                .site-comment-info {
+                    text-align: center;
+                    color: #999;
+                    a:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
                     }
                 }
                 .site-comment-editor {
@@ -648,6 +660,108 @@ $color-lite: lighten($color, 10%);
         }
     }
 }
+//login modal style
+.ReactModalPortal>div>div {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    h3 {
+        color: #fff;
+        margin: 0  0 16px 0;
+        text-align: center;
+        font-size: 28px;
+    }
+    form{
+        label {
+            font: 500 14px Roboto;
+            color: #FB5781;
+        }
+        input {
+            background: rgba(255, 255, 255, 0.15);
+            width: 100%;
+            padding: 8px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 3px;
+            outline: none;
+            color: #FFF;
+            font-size: 20px;
+        }
+        button {
+            background: linear-gradient(-45deg, #f857a6, #ff5858);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 21px;
+            outline: none;
+            overflow: hidden;
+            width: 85px;
+            display: block;
+            margin: 10px auto;
+            color: #FFF;
+            font-size: 18px;
+            cursor: pointer;
+            //transform: translateX(-50%);
+        }
+        // button:before {
+        //     content: '';
+        //     background: rgba(255, 255, 255, 0.3);
+        //     height: 100%;
+        //     width: 65px;
+        //     position: absolute;
+        //     top: 0;
+        //     left: -100%;
+        //     transform: skew(-45deg);
+        //     transition: 0s;
+        // }
+        // button:hover:before {
+        //     left: 110%;
+        //     transition: .3s;
+        // }
+    }
+    .oauth-login {
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+        .login-link {
+            margin-top: 10px;
+            a {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                border: 1px #ccc solid;
+                border-radius: 50%;
+                margin: 0 5px;
+            }
+        }
+    }
+}
+.ReactModal__Overlay {
+  -webkit-perspective: 600;
+  perspective: 600;
+  opacity: 0;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+
+.ReactModal__Content {
+  -webkit-transform: scale(0.5) rotateX(-30deg);
+}
+
+.ReactModal__Content--after-open {
+  -webkit-transform: scale(1) rotateX(0deg);
+  transition: all 150ms ease-in;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content--before-close {
+  -webkit-transform: scale(0.5) rotateX(30deg);
+  transition: all 150ms ease-in;
+}
+
 @keyframes menu-animation {
     0% {
         opacity: 0;

@@ -8,6 +8,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
+import * as optionsActions from '../actions/options'
 import { bindActionCreators } from 'redux'
 import ArticleDetailItem from '../components/ArticleDetailItem'
 import PreNextNavigation from '../components/PreNextNavigation'
@@ -63,7 +64,7 @@ class ArticleDetail extends Component {
               </div>
               { content }
               <PreNextNavigation preArticle={this.props.articlePreNext.prev} nextArticle={this.props.articlePreNext.next}></PreNextNavigation>
-              <CommentEditor></CommentEditor>
+              <CommentEditor toggleModal={this.props.optionsActions.toggleLoginModal}></CommentEditor>
           </section>
         )
     }
@@ -78,7 +79,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(articlesActions, dispatch)
+        actions: bindActionCreators(articlesActions, dispatch),
+        optionsActions: bindActionCreators(optionsActions, dispatch)
     }
 }
 

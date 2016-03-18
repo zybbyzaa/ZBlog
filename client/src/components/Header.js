@@ -6,6 +6,7 @@
  */
 
 import React, { Component, PropTypes } from 'react'
+import { isLogin } from '../utils/authService'
 
 class Header extends Component {
     handleBg() {
@@ -32,17 +33,37 @@ class Header extends Component {
     handleClick() {
         this.props.logout()
     }
-    render() {
+    openModal() {
+        this.props.toggleModal(true)
+    }
+    renderAvatar() {
         let avatarSrc = require('../assets/img/icon.jpg')
+
+        if(!isLogin() || this.props.user === null){
+            console.log('logout')
+            return(
+                <div className="site-header-avatar">
+                    <a className='logout' onClick={this.openModal.bind(this)}>登录</a>
+                </div>
+            )
+        } else {
+            console.log('login')
+            return(
+                <div className="site-header-avatar">
+                    <img src={avatarSrc} alt="avatar"/>
+                    <a onClick={this.handleClick.bind(this)}>登出</a>
+                </div>
+            )
+        }
+    }
+    render() {
+        const content = this.renderAvatar()
 
         return (
           <header className={'site-header ' + this.handleBg() }>
               <a href="/" className="site-header-logo">ZBlog</a>
               <h1 className='site-header-title'>{this.handleText()}</h1>
-              <div className="site-header-avatar">
-                  <img src={avatarSrc} alt="avatar"/>
-                  <a onClick={this.handleClick.bind(this)}>登出</a>
-              </div>
+              { content }
               <hr/>
           </header>
         )

@@ -1,6 +1,7 @@
 //options action constants
 export const CHANGEPAGENUM = 'CHANGEPAGENUM'
 export const TOGGLENAV = 'TOGGLENAV'
+export const TOGGLELOGINMODAL = 'TOGGLELOGINMODAL'
 
 //articles action constants
 export const REQUEST_ARTICLE_LIST = 'REQUEST_ARTICLE_LIST'

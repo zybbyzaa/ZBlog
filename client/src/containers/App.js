@@ -16,6 +16,8 @@ import NavbarButton from '../components/NavbarButton'
 import ScrollTop from '../components/ScrollTop'
 import Footer from '../components/Footer'
 import '../assets/sass/app.scss'
+import { isLogin } from '../utils/authService'
+import Modal from 'react-modal'
 
 class App extends Component {
 
@@ -38,19 +40,49 @@ class App extends Component {
             html.style.fontSize = windowWidth / 6.4 + 'px'
         }, false)
 
-        if(this.props.auth.user === null){
+        if( isLogin() && this.props.auth.user === null){
             this.props.authActions.getUserInfo(this.props.auth.token)
             console.log('user')
         }
     }
+    closeModal() {
+        this.props.optionsActions.toggleLoginModal(false)
+    }
     render() {
         const {location, options, optionsActions, auth, authActions} = this.props
+        const customStyles = {
+            overlay: {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(255, 255, 255, 0.5)'
+            },
+            content: {
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                right: '0',
+                bottom: '0',
+                border: '1px solid #ccc',
+                overflow: 'auto',
+                WebkitOverflowScrolling: 'touch',
+                borderRadius: '4px',
+                outline: 'none',
+                margin: 'auto',
+                padding: '25px',
+                width: '325px',
+                height: '400px',
+                background: 'rgba(71, 71, 71, 0.8)'
+            }
+        }
 
         return (
             <div className='site' onClick={this.handleClick.bind(this)}>
                 <NavbarButton isShowNav={options.isShowNav} toggleNav={optionsActions.toggleNav}/>
                 <Navbar />
-                <Header location={location} user={auth.user} logout={authActions.logout}/>
+                <Header location={location} user={auth.user || null} logout={authActions.logout} toggleModal={optionsActions.toggleLoginModal}/>
                 <div className="site-content">
                     { this.props.children }
                     <aside className="site-content-aside">
@@ -58,8 +90,32 @@ class App extends Component {
                 </div>
                 <Footer />
                 <ScrollTop />
+                <Modal isOpen={options.isShowLoginModal} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
+                    <h3>ZBlog</h3>
+                    <form className='login-form' name='loginForm' onSubmit={this.handleSubmit.bind(this)} noValidates>
+                        <label>Email Address</label>
+                        <input type="text" className='login-email' placeholder='请输入邮箱' ref='email' required/>
+                        <label>Password</label>
+                        <input type="password" className='login-pass' placeholder='请输入密码' ref='pass' required/>
+                        <button type="submit" className='login-submit'>登 录</button>
+                        <hr />
+                    </form>
+                    <div className='oauth-login'>
+                        <span>使用其他方式登录</span>
+                        <div className='login-link'>
+                            <a href="https://github.com/login/oauth/authorize?client_id=f1e112b810375ed8066a&state=11e1102de4e95cb58805a4512b4ea098671d9366&redirect_uri=http://127.0.0.1:8088/" className='login-github-link'>G</a>
+                            <a href="#" className='login-webchat-link'>W</a>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         )
+    }
+    handleSubmit(e) {
+        e.preventDefault()
+        const {email, pass} = this.refs
+
+        this.props.authActions.localLogin({email: email.value, password: pass.value})
     }
     handleClick(e) {
         if(this.props.options.isShowNav) {

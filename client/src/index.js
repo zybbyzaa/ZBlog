@@ -16,7 +16,7 @@ import {
     About,
     Login
 } from './containers'
-import { redirectToBack, redirectToLogin } from './utils/authService'
+// import { redirectToBack, redirectToLogin } from './utils/authService'
 
 const store = configureStore()
 
@@ -34,7 +34,7 @@ const store = configureStore()
 ReactDOM.render(
     <Provider store={store}>
     <Router history={browserHistory}>
-        <Route path="/" component={App} onEnter={redirectToLogin}>
+        <Route path="/" component={App}>
             <IndexRoute component={Home}/>
             <Route path="article" component={Article}>
                 <IndexRoute component={ArticleList}/>
@@ -45,7 +45,6 @@ ReactDOM.render(
             <Route path="music" component={Music}/>
             <Route path="about" component={About}/>
         </Route>
-        <Route path="/login" component={Login} onEnter={redirectToBack}/>
     </Router>
 </Provider>, document.getElementById('root'))
 

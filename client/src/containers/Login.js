@@ -31,7 +31,6 @@ class Login extends Component {
         e.preventDefault()
         const {email, password} = this.refs
 
-        console.log('submit')
         this.props.actions.localLogin({email: email.value, password: password.value})
     }
     // componentWillReceiveProps(nextProps){

@@ -40,7 +40,10 @@ app.use(staticServe('./server/assets', {
 }))
 app.keys = ['Zblog-secret']
 app.use(session({
-    store: new mongostore()
+    store: new mongostore(),
+    cookie: {
+        maxage: 24 * 3600
+    }
 }))
 app.use(passport.initialize())
 app.use(compress())
