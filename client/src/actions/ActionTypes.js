@@ -10,5 +10,8 @@ export const ARTICLE_DETAIL = 'ARTICLE_DETAIL'
 export const ARTICLE_PRENEXT = 'ARTICLE_PRENEXT'
 
 //auth action constants
+export const LOGOUT_USER = 'LOGOUT_USER'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const USERINFO_SUCCESS = 'USERINFO_SUCCESS'
+export const USERINFO_FAILURE = 'USERINFO_FAILURE'

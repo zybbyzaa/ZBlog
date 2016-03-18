@@ -9,12 +9,14 @@ import { combineReducers } from 'redux'
 import { routeReducer } from 'react-router-redux'
 import options from './options'
 import { articleList, articleDetail, prenextArticle } from './articles'
+import auth from './auth'
 
 const rootReducer = combineReducers({
     articleList,
     articleDetail,
     prenextArticle,
     options,
+    auth,
     routing: routeReducer
 })
 

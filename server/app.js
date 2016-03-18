@@ -12,6 +12,12 @@ import render from 'koa-ejs'
 import parser from 'koa-bodyparser'
 import logger from 'koa-logger'
 import onerror from 'koa-onerror'
+import session from 'koa-generic-session'
+import mongostore from 'koa-generic-session-mongo'
+import json from 'koa-json'
+import compress from 'koa-compress'
+import cors from 'koa-cors'
+import passport from 'koa-passport'
 import path from 'path'
 
 import routes from './routes'
@@ -22,11 +28,22 @@ const app = koa()
 onerror(app)
 
 app.use(logger())
+app.use(cors({
+    origin: true,
+    credentials: true
+}))
 app.use(parser())
+app.use(json())
 app.use(staticServe('./client/dist'))
 app.use(staticServe('./server/assets', {
     maxage: 1296000
 }))
+app.keys = ['Zblog-secret']
+app.use(session({
+    store: new mongostore()
+}))
+app.use(passport.initialize())
+app.use(compress())
 
 render(app, {
     root: path.join(__dirname, '..', 'client/dist'),

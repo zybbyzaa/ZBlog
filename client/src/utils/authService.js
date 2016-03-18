@@ -39,3 +39,7 @@ export function redirectToLogin(nextState,replace) {
         })
     }
 }
+
+export function signOut() {
+    cookie.remove('token', cookieConfig)
+}

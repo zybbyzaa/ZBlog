@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
-//import {connect} from 'react-redux'
-//import * as optionsActions from '../actions/options'
-//import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import * as Actions from '../actions/auth'
+import {bindActionCreators} from 'redux'
 
 class Login extends Component {
     constructor(props){
@@ -27,12 +27,22 @@ class Login extends Component {
             html.style.fontSize = windowWidth / 6.4 + 'px'
         }, false)
     }
-    handleSubmit() {
+    handleSubmit(e) {
         e.preventDefault()
         const {email, password} = this.refs
 
+        console.log('submit')
         this.props.actions.localLogin({email: email.value, password: password.value})
     }
+    // componentWillReceiveProps(nextProps){
+    //     const { auth } = nextProps
+    //
+    //     if(auth.errMsg){
+    //         msg.error(auth.errMsg)
+    //     }else if(!this.props.token && auth.token){
+    //         msg.success('登录成功.')
+    //     }
+    // }
     render() {
         //const {location, options, actions} = this.props
 
@@ -43,9 +53,9 @@ class Login extends Component {
                     <div className='login-panel'>
                         <h3>登录</h3>
                         <form className='login-form' name='loginForm' onSubmit={this.handleSubmit} noValidate>
-                            <input type="text" className='login-email' placeholder='请输入邮箱' ref='email'/>
-                            <input type="password" className='login-password' placeholder='输入密码' ref='password'/>
-                            <input type="submit" className='login-submit' value='登录'/>
+                            <input type="text" className='login-email' placeholder='请输入邮箱' ref='email' required/>
+                            <input type="password" className='login-password' placeholder='输入密码' ref='password' required/>
+                            <button type="submit" className='login-submit'>登 录</button>
                             <hr />
                         </form>
                         <span>使用其他方式登录</span>
@@ -60,19 +70,16 @@ class Login extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         // location: state.routing.location,
-//         // options: state.options.toJS()
-//     }
-// }
+function mapStateToProps(state) {
+    return {
+        auth: state.auth.toJS()
+    }
+}
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         //actions: bindActionCreators(optionsActions, dispatch)
-//     }
-// }
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    }
+}
 
-
-//export default connect(mapStateToProps, mapDispatchToProps)(Login)
-export default Login
+export default connect(mapStateToProps,mapDispatchToProps)(Login)

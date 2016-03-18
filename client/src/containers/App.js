@@ -8,6 +8,7 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import * as optionsActions from '../actions/options'
+import * as authActions from '../actions/auth'
 import {bindActionCreators} from 'redux'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
@@ -36,15 +37,20 @@ class App extends Component {
             }
             html.style.fontSize = windowWidth / 6.4 + 'px'
         }, false)
+
+        if(this.props.auth.user === null){
+            this.props.authActions.getUserInfo(this.props.auth.token)
+            console.log('user')
+        }
     }
     render() {
-        const {location, options, actions} = this.props
+        const {location, options, optionsActions, auth, authActions} = this.props
 
         return (
             <div className='site' onClick={this.handleClick.bind(this)}>
-                <NavbarButton isShowNav={options.isShowNav} toggleNav={actions.toggleNav}/>
+                <NavbarButton isShowNav={options.isShowNav} toggleNav={optionsActions.toggleNav}/>
                 <Navbar />
-                <Header location={location} />
+                <Header location={location} user={auth.user} logout={authActions.logout}/>
                 <div className="site-content">
                     { this.props.children }
                     <aside className="site-content-aside">
@@ -58,7 +64,7 @@ class App extends Component {
     handleClick(e) {
         if(this.props.options.isShowNav) {
             document.body.className = ''
-            this.props.actions.toggleNav(!this.props.options.isShowNav)
+            this.props.optionsActions.toggleNav(!this.props.options.isShowNav)
         }
     }
 }
@@ -66,19 +72,23 @@ class App extends Component {
 App.propTypes = {
     location: PropTypes.object.isRequired,
     options: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    optionsActions: PropTypes.object.isRequired,
+    authActions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
     return {
         location: state.routing.location,
-        options: state.options.toJS()
+        options: state.options.toJS(),
+        auth: state.auth.toJS()
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(optionsActions, dispatch)
+        optionsActions: bindActionCreators(optionsActions, dispatch),
+        authActions: bindActionCreators(authActions, dispatch)
     }
 }
 

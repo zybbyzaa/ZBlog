@@ -29,11 +29,20 @@ class Header extends Component {
                 return 'Welcome'
         }
     }
+    handleClick() {
+        this.props.logout()
+    }
     render() {
+        let avatarSrc = require('../assets/img/icon.jpg')
+
         return (
           <header className={'site-header ' + this.handleBg() }>
               <a href="/" className="site-header-logo">ZBlog</a>
               <h1 className='site-header-title'>{this.handleText()}</h1>
+              <div className="site-header-avatar">
+                  <img src={avatarSrc} alt="avatar"/>
+                  <a onClick={this.handleClick.bind(this)}>登出</a>
+              </div>
               <hr/>
           </header>
         )
