@@ -93,10 +93,10 @@ class App extends Component {
                 <Modal isOpen={options.isShowLoginModal} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
                     <h3>ZBlog</h3>
                     <form className='login-form' name='loginForm' onSubmit={this.handleSubmit.bind(this)} noValidates>
-                        <label>Email Address</label>
-                        <input type="text" className='login-email' placeholder='请输入邮箱' ref='email' required/>
-                        <label>Password</label>
-                        <input type="password" className='login-pass' placeholder='请输入密码' ref='pass' required/>
+                        <label htmlFor='email'>Email Address</label>
+                        <input type="text" id='email' className='login-email' placeholder='请输入邮箱' ref='email' required/>
+                        <label htmlFor='pass'>Password</label>
+                        <input type="password" id='pass' className='login-pass' placeholder='请输入密码' ref='pass' required/>
                         <button type="submit" className='login-submit'>登 录</button>
                         <hr />
                     </form>
@@ -107,6 +107,7 @@ class App extends Component {
                             <a href="#" className='login-webchat-link'>W</a>
                         </div>
                     </div>
+                    <div className="close" onClick={this.closeModal.bind(this)}></div>
                 </Modal>
             </div>
         )

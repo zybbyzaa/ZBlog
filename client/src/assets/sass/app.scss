@@ -732,6 +732,31 @@ $color-lite: lighten($color, 10%);
             }
         }
     }
+    .close {
+        background: #474747;
+        height: 30px;
+        width: 30px;
+        border: 3px solid #FFF;
+        border-radius: 50%;
+        position: fixed;
+        top: -15px;
+        right: -15px;
+        cursor: pointer;
+        transition: .4s .3s;
+        &:before,&:after {
+            content: '';
+            background: #FFF;
+            height: 80%;
+            width: 3px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        &:after {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+    }
 }
 .ReactModal__Overlay {
   -webkit-perspective: 600;
