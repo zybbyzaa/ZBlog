@@ -3,7 +3,7 @@ import {Strategy} from 'passport-local'
 import co from 'co'
 import User from '../../../../db/User'
 
-export function Setup(User) {
+export function localSetup(User) {
     passport.serializeUser(function(user, done) {
         done(null, user._id)
     })

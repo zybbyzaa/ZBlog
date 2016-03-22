@@ -40,6 +40,7 @@ class App extends Component {
             html.style.fontSize = windowWidth / 6.4 + 'px'
         }, false)
 
+        console.log('ssd2 ' + (isLogin()))
         if( isLogin() && this.props.auth.user === null){
             this.props.authActions.getUserInfo(this.props.auth.token)
             console.log('user')
@@ -103,7 +104,7 @@ class App extends Component {
                     <div className='oauth-login'>
                         <span>使用其他方式登录</span>
                         <div className='login-link'>
-                            <a href="https://github.com/login/oauth/authorize?client_id=f1e112b810375ed8066a&state=11e1102de4e95cb58805a4512b4ea098671d9366&redirect_uri=http://127.0.0.1:8088/" className='login-github-link'>G</a>
+                            <a href="https://github.com/login/oauth/authorize?client_id=f1e112b810375ed8066a&state=11e1102de4e95cb58805a4512b4ea098671d9366&redirect_uri=http://localhost:8088/api/auth/github/callback" className='login-github-link'>G</a>
                             <a href="#" className='login-webchat-link'>W</a>
                         </div>
                     </div>

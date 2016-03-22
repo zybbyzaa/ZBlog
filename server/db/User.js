@@ -18,6 +18,9 @@ const User = {
         }
 
         return UserModel.findOne(query).exec()
+    },
+    findUser(condition) {
+        return UserModel.findOne(condition).exec()
     }
 }
 
