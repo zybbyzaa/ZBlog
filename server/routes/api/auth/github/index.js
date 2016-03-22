@@ -12,7 +12,7 @@ router.get('/callback', function*(next) {
     var ctx = this
 
     yield passport.authenticate('github', function *(err, user, redirectURL) {
-        const redirectUrl = '/'
+        const redirectUrl = ctx.session.passport.redirectUrl || '/'
         let snsmsg = {}
 
         console.log(user)

@@ -16,7 +16,7 @@ import NavbarButton from '../components/NavbarButton'
 import ScrollTop from '../components/ScrollTop'
 import Footer from '../components/Footer'
 import '../assets/sass/app.scss'
-import { isLogin } from '../utils/authService'
+import { isLogin, getCookie } from '../utils/authService'
 import Modal from 'react-modal'
 
 class App extends Component {
@@ -48,6 +48,17 @@ class App extends Component {
     }
     closeModal() {
         this.props.optionsActions.toggleLoginModal(false)
+    }
+    snsLogin(e,provider) {
+        e.preventDefault()
+
+        const host = __DEVELOPMENT__ ? '//localhost:8088/api/auth/' : '/api/auth/'
+        let search = host + provider + '?redirectUrl=' + window.location.origin
+        const token = getCookie('token')
+        if(token) {
+            search += '&access_token=' + token.replace(/(^\")|(\"$)/g, "")
+        }
+        window.location.href = search
     }
     render() {
         const {location, options, optionsActions, auth, authActions} = this.props
@@ -104,7 +115,7 @@ class App extends Component {
                     <div className='oauth-login'>
                         <span>使用其他方式登录</span>
                         <div className='login-link'>
-                            <a href="https://github.com/login/oauth/authorize?client_id=f1e112b810375ed8066a&state=11e1102de4e95cb58805a4512b4ea098671d9366&redirect_uri=http://localhost:8088/api/auth/github/callback" className='login-github-link'>G</a>
+                            <a href="#" className='login-github-link' onClick={e=>this.snsLogin(e,'github')}>G</a>
                             <a href="#" className='login-webchat-link'>W</a>
                         </div>
                     </div>
