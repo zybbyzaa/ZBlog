@@ -9,9 +9,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as articlesActions from '../actions/articles'
 import * as optionsActions from '../actions/options'
+import * as commentActions from '../actions/comments'
 import { bindActionCreators } from 'redux'
 import ArticleDetailItem from '../components/ArticleDetailItem'
 import PreNextNavigation from '../components/PreNextNavigation'
+import CommentList from '../components/CommentList'
 import CommentEditor from '../components/CommentEditor'
 import { ClipLoader } from 'halogen'
 import { Link } from 'react-router'
@@ -23,6 +25,7 @@ class ArticleDetail extends Component {
 
         this.props.actions.getArticleDetail(id)
         this.props.actions.getArticlePreNext(id)
+        this.props.commentActions.getCommentList(id)
     }
     componentWillUpdate(nextProps, nextState) {
         const oldId = this.props.params.id
@@ -31,6 +34,7 @@ class ArticleDetail extends Component {
         if (oldId !== newId) {
             this.props.actions.getArticleDetail(newId)
             this.props.actions.getArticlePreNext(newId)
+            this.props.commentActions.getCommentList(newId)
         }
     }
     renderArticle(article,count) {
@@ -64,7 +68,8 @@ class ArticleDetail extends Component {
               </div>
               { content }
               <PreNextNavigation preArticle={this.props.articlePreNext.prev} nextArticle={this.props.articlePreNext.next}></PreNextNavigation>
-              <CommentEditor toggleModal={this.props.optionsActions.toggleLoginModal}></CommentEditor>
+              <CommentList toggleModal={this.props.optionsActions.toggleLoginModal} commentList={this.props.comments.items} commentActions={this.props.commentActions}></CommentList>
+              <CommentEditor toggleModal={this.props.optionsActions.toggleLoginModal} commentActions={this.props.commentActions} aid={this.props.params.id}></CommentEditor>
           </section>
         )
     }
@@ -73,14 +78,16 @@ class ArticleDetail extends Component {
 function mapStateToProps(state) {
     return {
         article: state.articleDetail.toJS(),
-        articlePreNext: state.prenextArticle.toJS()
+        articlePreNext: state.prenextArticle.toJS(),
+        comments: state.comments.toJS()
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(articlesActions, dispatch),
-        optionsActions: bindActionCreators(optionsActions, dispatch)
+        optionsActions: bindActionCreators(optionsActions, dispatch),
+        commentActions: bindActionCreators(commentActions, dispatch)
     }
 }
 

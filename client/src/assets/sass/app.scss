@@ -402,6 +402,56 @@ $color-lite: lighten($color, 10%);
                         font-size: 0.24rem;
                     }
                 }
+                .site-comment-list {
+                    border-top: 1px #ccc dashed;
+                    .site-comment-list-empty {
+                        color: #ccc;
+                    }
+                    .site-comment-listItem {
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin: 0.2rem 0.4rem;
+                        border-bottom: 1px #ddd solid;
+                        font-size: 0.20rem;
+                        line-height: 0.25rem;
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                        .site-comment-listItem-avatar {
+                            width: 0.6rem;
+                            height: 0.6rem;
+                            margin:  0.2rem 0.2rem 0.2rem 0;
+                            border-radius: 50%;
+                        }
+                        .site-comment-listItem-info {
+                            p {
+                                margin: 0;
+                                height: 0.75rem;
+                                width: 3.6rem;
+                            }
+                            .meta {
+                                height: 0.25rem;
+                                font-size: 0.16rem;
+                                color: #747F8C;
+                                a {
+                                    color: #494949;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                        .newReply {
+                            width: 100%;
+                            margin: .1rem;
+                            border-top: 1px #ddd dashed;
+                        }
+                        &.reply {
+                            border-top: 1px #ddd solid;
+                            .site-comment-listItem-info {
+                                width: 3.2rem;
+                            }
+                        }
+                    }
+                }
                 .site-comment-info {
                     text-align: center;
                     color: #999;
@@ -446,6 +496,7 @@ $color-lite: lighten($color, 10%);
                     .site-comment-editor-text {
                         flex-grow: 1;
                         font-size: 0.16rem;
+                        line-height: 0.2rem;
                         background-color: #f4f5f7;
                         border: 1px solid #e5e9ef;
                         overflow: auto;

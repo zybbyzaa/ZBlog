@@ -59,6 +59,7 @@ UserSchema.virtual('password').set(
 UserSchema.virtual('userInfo').get(
     function() {
         return {
+            'uid': this._id,
             'username': this.username,
             'role': this.role,
             'email': this.email,
