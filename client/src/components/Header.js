@@ -37,8 +37,6 @@ class Header extends Component {
         this.props.toggleModal(true)
     }
     renderAvatar() {
-        let avatarSrc = require('../assets/img/icon.jpg')
-
         if(!isLogin() || this.props.user === null){
             console.log('logout')
             return(
@@ -50,7 +48,7 @@ class Header extends Component {
             console.log('login')
             return(
                 <div className="site-header-avatar">
-                    <img src={avatarSrc} alt="avatar"/>
+                    <img src={this.props.user.avatar} alt="avatar"/>
                     <a onClick={this.handleClick.bind(this)}>登出</a>
                 </div>
             )

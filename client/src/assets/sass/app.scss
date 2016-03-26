@@ -404,6 +404,8 @@ $color-lite: lighten($color, 10%);
                 }
                 .site-comment-list {
                     border-top: 1px #ccc dashed;
+                    overflow-y: auto;
+                    height: 475px;
                     .site-comment-list-empty {
                         color: #ccc;
                     }
@@ -837,7 +839,9 @@ $color-lite: lighten($color, 10%);
   -webkit-transform: scale(0.5) rotateX(30deg);
   transition: all 150ms ease-in;
 }
-
+::-webkit-scrollbar {
+    display: none;
+}
 @keyframes menu-animation {
     0% {
         opacity: 0;

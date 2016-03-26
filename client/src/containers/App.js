@@ -40,7 +40,6 @@ class App extends Component {
             html.style.fontSize = windowWidth / 6.4 + 'px'
         }, false)
 
-        console.log('ssd2 ' + (isLogin()))
         if( isLogin() && this.props.auth.user === null){
             this.props.authActions.getUserInfo(this.props.auth.token)
             console.log('user')

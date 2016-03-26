@@ -1,6 +1,7 @@
 import User from '../../../db/User'
 import UserModel from '../../../db/schema/user'
 import {isAuthenticated} from '../auth/auth.service'
+import {logger} from '../../../utils/log'
 
 const router = require('koa-router')()
 
@@ -14,7 +15,6 @@ router.get('/createUser', function*() {
     User.createUser(user)
 })
 router.get('/getUserInfo', isAuthenticated(), function*() {
-    console.log(1);
     const userId = this.req.user._id
 
     try {
@@ -22,6 +22,7 @@ router.get('/getUserInfo', isAuthenticated(), function*() {
 
         this.status = 200
         this.body = user.userInfo
+        logger.info('getuserinfo')
     } catch (err) {
         this.throw(err)
     }

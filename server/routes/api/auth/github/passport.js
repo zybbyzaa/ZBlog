@@ -2,12 +2,13 @@ import passport from 'koa-passport'
 import {Strategy} from 'passport-github'
 import co from 'co'
 import User from '../../../../db/User'
+import config from '../../../../config.js'
 
 export function githubSetup(User) {
     passport.use(new Strategy({
-        clientID: 'f1e112b810375ed8066a',
-        clientSecret: '11e1102de4e95cb58805a4512b4ea098671d9366',
-        callbackURL: 'http://localhost:8089/api/auth/github/callback',
+        clientID: config.github.clientID,
+        clientSecret: config.github.clientSecret,
+        callbackURL: config.github.callbackURL,
         passReqToCallback: true
     },
     function(req, accessToken, refreshToken, profile, done) {

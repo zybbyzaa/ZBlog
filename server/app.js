@@ -19,7 +19,7 @@ import compress from 'koa-compress'
 import cors from 'koa-cors'
 import passport from 'koa-passport'
 import path from 'path'
-
+import config from './config'
 import routes from './routes'
 
 
@@ -28,6 +28,7 @@ const app = koa()
 onerror(app)
 
 app.use(logger())
+//app.use(createLoggerMiddle())
 app.use(cors({
     origin: true,
     credentials: true
@@ -38,19 +39,16 @@ app.use(staticServe('./client/dist'))
 app.use(staticServe('./server/assets', {
     maxage: 1296000
 }))
-app.keys = ['Zblog-secret']
+app.keys = [config.session.secrets]
 app.use(session({
     store: new mongostore({
-        uri: 'mongodb://localhost:27017/zblog'
+        uri: config.db.url
     }),
-    cookie: {
-        maxage: 2 * 3600 * 1000
-    }
+    cookie: config.session.cookie
 }))
 app.use(passport.initialize())
 //app.use(passport.session())
 app.use(compress())
-
 render(app, {
     root: path.join(__dirname, '..', 'client/dist'),
     layout: false,

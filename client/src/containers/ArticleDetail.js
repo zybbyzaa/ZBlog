@@ -25,7 +25,7 @@ class ArticleDetail extends Component {
 
         this.props.actions.getArticleDetail(id)
         this.props.actions.getArticlePreNext(id)
-        this.props.commentActions.getCommentList(id)
+        this.props.commentActions.getCommentList(id,0,false)
     }
     componentWillUpdate(nextProps, nextState) {
         const oldId = this.props.params.id
@@ -34,7 +34,7 @@ class ArticleDetail extends Component {
         if (oldId !== newId) {
             this.props.actions.getArticleDetail(newId)
             this.props.actions.getArticlePreNext(newId)
-            this.props.commentActions.getCommentList(newId)
+            this.props.commentActions.getCommentList(newId,0,false)
         }
     }
     renderArticle(article,count) {
@@ -68,7 +68,7 @@ class ArticleDetail extends Component {
               </div>
               { content }
               <PreNextNavigation preArticle={this.props.articlePreNext.prev} nextArticle={this.props.articlePreNext.next}></PreNextNavigation>
-              <CommentList toggleModal={this.props.optionsActions.toggleLoginModal} commentList={this.props.comments.items} commentActions={this.props.commentActions}></CommentList>
+              <CommentList toggleModal={this.props.optionsActions.toggleLoginModal} comment={this.props.comments} commentActions={this.props.commentActions}></CommentList>
               <CommentEditor toggleModal={this.props.optionsActions.toggleLoginModal} commentActions={this.props.commentActions} aid={this.props.params.id}></CommentEditor>
           </section>
         )

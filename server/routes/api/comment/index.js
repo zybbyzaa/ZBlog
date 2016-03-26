@@ -6,12 +6,20 @@ const router = require('koa-router')()
 
 router.get('/getCommentList/:aid', function*() {
     const aid = this.params.aid
+    const cur = parseInt(this.query.count,10)
 
     try {
-        const commentList = yield Comment.getAllComments(aid)
+        const commentList = yield Comment.getAllComments(aid,cur)
+        const count = yield Comment.getCommentCount()
 
         this.status = 200
-        this.body = {data: commentList}
+        this.body = {
+            data: commentList,
+            count: {
+                curCount: commentList.length,
+                totalCount: count
+            }
+        }
     } catch (err) {
         this.throw(err)
     }
@@ -62,7 +70,8 @@ router.post('/addReply/:id', isAuthenticated(), function*() {
 
     reply.userinfo = {
         id: this.req.user._id,
-        username: this.req.user.username
+        username: this.req.user.username,
+        avatar: this.req.user.avatar
     }
     reply.create_time = new Date()
     console.log(reply)

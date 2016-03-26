@@ -8,6 +8,7 @@ import users from './api/users'
 import article from './api/article'
 import auth from './api/auth'
 import comment from './api/comment'
+import { logger } from '../utils/log'
 
 export default function(app) {
     const Router = require('koa-router')()
@@ -17,6 +18,7 @@ export default function(app) {
     Router.use('/api/article', article.routes(), article.allowedMethods())
     Router.use('/api/comment', comment.routes(), comment.allowedMethods())
     Router.get('/', function* () {
+        logger.info('enter index')
         yield this.render('index')
     })
     Router.get('*', function* () {

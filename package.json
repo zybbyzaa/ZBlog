@@ -4,12 +4,13 @@
   "description": "a blog build with koa、react、redux",
   "main": "./server/bin/www.js",
   "scripts": {
-    "start": "npm run client-build && npm run server-start",
-    "startDB": "./server/bin/startDB.sh",
-    "server-watch": "node_modules/.bin/nodemon ./server/bin/www",
+    "win-start": "set NODE_ENV=production && npm run client-build && npm run server-start",
+    "win-watch": "set NODE_ENV=development && npm run server-watch",
+    "server-watch": "node_modules/.bin/nodemon ./server/bin/www | npm run log",
     "client-watch": "node ./webpack/webpack.server.js",
-    "server-start": "node ./server/bin/www",
-    "client-build": "node_modules/.bin/webpack -p --config ./webpack/webpack.config.prod"
+    "server-start": "node ./server/bin/www | npm run log",
+    "client-build": "node_modules/.bin/webpack -p --config ./webpack/webpack.config.prod",
+    "log": "node_modules/.bin/bunyan"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/zybbyzaa/ZBlog#readme",
   "dependencies": {
     "axios": "^0.9.1",
+    "bunyan": "^1.8.0",
     "co": "^4.6.0",
     "crypto": "0.0.3",
     "halogen": "^0.1.10",

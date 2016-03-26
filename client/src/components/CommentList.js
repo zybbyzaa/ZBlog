@@ -43,6 +43,17 @@ class CommentList extends Component {
     openModal() {
         this.props.toggleModal(true)
     }
+    handleSrcoll(e) {
+        const id = document.location.pathname.split('/')[2]
+        const curCount = this.props.comment.curCount
+        const totalCount = this.props.comment.totalCount
+
+        if (this.refs['commentList'].scrollTop > curCount * 100 && curCount < totalCount) {
+            this.props.commentActions.getCommentList(id,curCount,true)
+        }
+
+        e.stopPropagation()
+    }
     renderCommentList(items) {
         let comment = ''
 
@@ -52,7 +63,7 @@ class CommentList extends Component {
             comment = items.map((item, i) => {
                 return (
                     <div className="site-comment-listItem" key={i}>
-                        <img className='site-comment-listItem-avatar' src={require('../assets/img/icon.jpg')} alt="test"/>
+                        <img className='site-comment-listItem-avatar' src={item.uid.avatar} alt="test"/>
                         <div className="site-comment-listItem-info">
                             <p>{item.content}</p>
                             <p className='meta'>
@@ -65,7 +76,7 @@ class CommentList extends Component {
                             :
                             item.replys.map((reply,i) =>
                             <div className="site-comment-listItem reply" key={i}>
-                                <img className='site-comment-listItem-avatar' src={require('../assets/img/icon.jpg')} alt="test"/>
+                                <img className='site-comment-listItem-avatar' src={reply.userinfo.avatar} alt="test"/>
                                 <div className="site-comment-listItem-info">
                                     <p>{reply.content}</p>
                                     <p className='meta'>
@@ -98,12 +109,11 @@ class CommentList extends Component {
         return comment
     }
     render() {
-        const src = require('../assets/img/icon.jpg')
-        const items = this.props.commentList
+        const items = this.props.comment.items
         const content = this.renderCommentList(items)
 
         return (
-            <section className='site-comment-list'>
+            <section className='site-comment-list' onScroll={e=>this.handleSrcoll(e)} ref='commentList'>
                 { content }
             </section>
         )

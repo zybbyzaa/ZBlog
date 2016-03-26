@@ -1,4 +1,4 @@
-import { SUCCESS_ADD_COMMENT, FAILURE_ADD_COMMENT, COMMENT_LIST, SUCCESS_ADD_REPLY, FAILURE_ADD_REPLY} from './ActionTypes'
+import { SUCCESS_ADD_COMMENT, FAILURE_ADD_COMMENT, COMMENT_LIST, COMMENT_LIST_MORE, SUCCESS_ADD_REPLY, FAILURE_ADD_REPLY} from './ActionTypes'
 import fetch from 'isomorphic-fetch'
 import { getCookie } from '../utils/authService'
 
@@ -45,18 +45,26 @@ export function addComment(comment) {
     }
 }
 
+function addCommentList(json) {
+    return {
+        type: COMMENT_LIST_MORE,
+        commentList: json.data,
+        commentCount: json.count
+    }
+}
 function receiveCommentList(json) {
     return {
         type: COMMENT_LIST,
-        commentList: json.data
+        commentList: json.data,
+        commentCount: json.count
     }
 }
-export function getCommentList(id) {
+export function getCommentList(id,cur,isAdd) {
     return (dispatch, getState) => {
-        return fetch(host + 'getCommentList/' + id).then(
+        return fetch(host + 'getCommentList/' + id + '?count=' + cur ).then(
             response => response.json()).then(
                 json => {
-                    return dispatch(receiveCommentList(json))
+                    return isAdd ? dispatch(addCommentList(json)) : dispatch(receiveCommentList(json))
                 })
     }
 }
