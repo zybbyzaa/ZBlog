@@ -22,24 +22,6 @@ import Modal from 'react-modal'
 class App extends Component {
 
     componentDidMount() {
-        document.addEventListener('DOMContentLoaded', function() {
-            let html = document.documentElement
-            let windowWidth = 0
-
-            if (html.clientWidth < 375) {
-                windowWidth = html.clientWidth
-            } else if (html.clientWidth < 768) {
-                windowWidth = 375
-            } else if (html.clientWidth < 960) {
-                windowWidth = 480
-            }else if(html.clientWidth < 1360){
-                windowWidth = 600
-            } else {
-                windowWidth = 768
-            }
-            html.style.fontSize = windowWidth / 6.4 + 'px'
-        }, false)
-
         if( isLogin() && this.props.auth.user === null){
             this.props.authActions.getUserInfo(this.props.auth.token)
             console.log('user')

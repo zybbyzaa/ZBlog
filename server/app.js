@@ -1,10 +1,3 @@
-/**
- * 服务器入口
- * @zyb (zybbyzaa@163.com)
- * @date    2016-01-30 20:24:26
- * @version $Id$
- */
-
 import koa from 'koa'
 import staticServe from 'koa-static'
 import router from 'koa-router'
@@ -28,7 +21,6 @@ const app = koa()
 onerror(app)
 
 app.use(logger())
-//app.use(createLoggerMiddle())
 app.use(cors({
     origin: true,
     credentials: true
@@ -47,7 +39,6 @@ app.use(session({
     cookie: config.session.cookie
 }))
 app.use(passport.initialize())
-//app.use(passport.session())
 app.use(compress())
 render(app, {
     root: path.join(__dirname, '..', 'client/dist'),

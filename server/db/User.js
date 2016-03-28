@@ -5,6 +5,9 @@ const User = {
     createUser(data) {
         return new UserModel(data).save()
     },
+    deleteUserById(id) {
+        return UserModel.findByIdAndRemove(id)
+    },
     getUserById(id) {
         const query = {
             _id: id
@@ -19,8 +22,14 @@ const User = {
 
         return UserModel.findOne(query).exec()
     },
-    findUser(condition) {
+    getUser(condition) {
         return UserModel.findOne(condition).exec()
+    },
+    getUserCount() {
+        return UserModel.count()
+    },
+    updateUser(id, updateCondtion) {
+        return UserModel.findByIdAndUpdate(id,updateCondtion)
     }
 }
 

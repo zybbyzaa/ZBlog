@@ -1,10 +1,3 @@
-/**
- *
- * @authors zyb (zybbyzaa@163.com)
- * @date    2016-02-01 11:53:23
- * @version $Id$
- */
-
 var webpack = require('webpack')
 var path = require('path')
 var CleanPlugin = require('clean-webpack-plugin')

@@ -6,8 +6,8 @@ const ArticleSchema = new Schema({
         default: ''
     },
     author: {
-        type: String,
-        default: 'Admin'
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     content: {
         type: String,
@@ -17,10 +17,10 @@ const ArticleSchema = new Schema({
         type: String,
         default: ''
     },
-    tags: {
-        type: Array,
-        default: []
-    },
+    tags: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Tag'
+    }],
     views: {
         type: Number,
         default: 0,
@@ -45,6 +45,7 @@ ArticleSchema.virtual('info').get(
     function() {
         return {
             'title': this.title,
+            'author': this.author,
             'content': this.content,
             'description': this.description,
             'views': this.views,

@@ -1,0 +1,20 @@
+.site-footer {
+    text-align: center;
+    padding: 1rem 0;
+    line-height: 1.2;
+    font-size: 0.3rem;
+    border-top: 1px #eee solid;
+    height: 2rem;
+    .copyright {
+        color: #777;
+        a {
+            color: #404040;
+        }
+    }
+    @media screen and (max-width: 480px) {
+        font-size: 0.6rem;
+    }
+    @media screen and (min-width: 480px) and (max-width: 800px) {
+        font-size: 0.4rem;
+    }
+}

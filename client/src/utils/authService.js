@@ -21,7 +21,6 @@ export function removeCookie(name) {
 }
 
 export function isLogin() {
-    console.log(cookie.load('token'))
     return !!cookie.load('token')
 }
 
@@ -46,5 +45,4 @@ export function isLogin() {
 
 export function signOut() {
     removeCookie('token')
-    console.log('cookie removed')
 }

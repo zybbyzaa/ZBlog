@@ -1,6 +1,4 @@
-import mongoose, {
-    Schema
-} from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 import crypto from 'crypto'
 
 const UserSchema = new Schema({

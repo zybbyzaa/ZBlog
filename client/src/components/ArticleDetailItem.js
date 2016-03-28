@@ -18,9 +18,14 @@ class ArticleDetailItem extends Component {
                 <h3 className="site-article-title">{this.props.article.title}</h3>
                 <section className='site-article-meta'>
                     <div className='left'>
-                        <span><i className='icon-user'></i> {this.props.article.author}</span>
+                        <span><i className='icon-user'></i> {this.props.article.author.username}</span>
                         <span><i className='icon-calendar'></i> {moment(this.props.article.update_time).fromNow()}</span>
-                        <span><i className='icon-tags'></i> 标签:{this.props.article.tags}</span>
+                        <span>
+                            <i className='icon-tags'></i>
+                            标签:{this.props.article.tags.map((tag,i) => {
+                                return tag.name
+                            })}
+                        </span>
                     </div>
                     <div className='right'>
                         <span><i className='icon-comments'></i> 评论:{this.props.article.comments}</span>
