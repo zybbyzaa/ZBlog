@@ -4,100 +4,98 @@
 @import 'pages/header';
 @import 'pages/content';
 @import 'pages/footer';
-
 /* icomoon图标字体 */
 @font-face {
     font-family: 'icomoon';
+    font-weight: normal;
+    font-style: normal;
     src: url('../fonts/icomoon.eot');
     src: url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf') format('truetype'), url('../fonts/icomoon.woff') format('woff'), url('../fonts/icomoon.svg?#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
 }
-[class^="icon-"],
-[class*=" icon-"] {
+[class^='icon-'],
+[class*=' icon-'] {
     font-family: 'icomoon' !important;
-    speak: none;
-    font-style: normal;
     font-weight: normal;
+    font-style: normal;
     font-variant: normal;
-    text-transform: none;
     line-height: 1;
+    text-transform: none;
+    speak: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 .icon-music:before {
-    content: "\f001";
+    content: '\f001';
 }
 .icon-search:before {
-    content: "\f002";
+    content: '\f002';
 }
 .icon-user:before {
-    content: "\f007";
+    content: '\f007';
 }
 .icon-home:before {
-    content: "\f015";
+    content: '\f015';
 }
 .icon-tags:before {
-    content: "\f02c";
+    content: '\f02c';
 }
 .icon-book:before {
-    content: "\f02d";
+    content: '\f02d';
 }
 .icon-image:before {
-    content: "\f03e";
+    content: '\f03e';
 }
 .icon-photo:before {
-    content: "\f03e";
+    content: '\f03e';
 }
 .icon-picture-o:before {
-    content: "\f03e";
+    content: '\f03e';
 }
 .icon-pencil:before {
-    content: "\f040";
+    content: '\f040';
 }
 .icon-edit:before {
-    content: "\f044";
+    content: '\f044';
 }
 .icon-info-circle:before {
-    content: "\f05a";
+    content: '\f05a';
 }
 .icon-pencil-square-o:before {
-    content: "\f044";
+    content: '\f044';
 }
 .icon-arrow-up:before {
-    content: "\f062";
+    content: '\f062';
 }
 .icon-fire:before {
-    content: "\f06d";
+    content: '\f06d';
 }
 .icon-calendar:before {
-    content: "\f073";
+    content: '\f073';
 }
 .icon-comments:before {
-    content: "\f086";
+    content: '\f086';
 }
 .icon-github-square:before {
-    content: "\f092";
+    content: '\f092';
 }
 .icon-group:before {
-    content: "\f0c0";
+    content: '\f0c0';
 }
 .icon-users:before {
-    content: "\f0c0";
+    content: '\f0c0';
 }
 .icon-bars:before {
-    content: "\f0c9";
+    content: '\f0c9';
 }
 .icon-navicon:before {
-    content: "\f0c9";
+    content: '\f0c9';
 }
 .icon-reorder:before {
-    content: "\f0c9";
+    content: '\f0c9';
 }
 .icon-rss-square:before {
-    content: "\f143";
+    content: '\f143';
 }
-
 .site {
     display: flex;
     flex-direction: column;
@@ -105,61 +103,61 @@
     border: 1px #eee solid;
     background-color: #fcfcf4;
     .goTop {
-        width: 48px;
-        height: 48px;
-        line-height: 48px;
-        color: #fff;
         font-size: 36px;
-        border: 0;
-        outline: 0;
-        background-color: rgba(0, 0, 0, .5);
+        line-height: 48px;
         position: fixed;
         right: 32px;
         bottom: 32px;
+        width: 48px;
+        height: 48px;
+        color: #fff;
+        border: 0;
+        outline: 0;
+        background-color: rgba(0, 0, 0, .5);
     }
 }
-.ReactModalPortal>div>div {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+.ReactModalPortal > div > div {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
     h3 {
-        color: #fff;
-        margin: 0  0 16px 0;
-        text-align: center;
         font-size: 28px;
+        margin: 0 0 16px;
+        text-align: center;
+        color: #fff;
     }
-    form{
+    form {
         label {
             font: 500 14px Roboto;
-            color: #FB5781;
+            color: #fb5781;
         }
         input {
-            background: rgba(255, 255, 255, 0.15);
+            font-size: 20px;
             width: 100%;
-            padding: 8px;
             margin: 15px 0;
+            padding: 8px;
+            color: #fff;
             border: none;
             border-radius: 3px;
             outline: none;
-            color: #FFF;
-            font-size: 20px;
+            background: rgba(255, 255, 255, .15);
         }
         button {
-            background: linear-gradient(-45deg, #f857a6, #ff5858);
+            font-size: 18px;
+            display: block;
+            overflow: hidden;
+            width: 85px;
+            margin: 10px auto;
             padding: 10px 20px;
+            cursor: pointer;
+            color: #fff;
             border: none;
             border-radius: 21px;
             outline: none;
-            overflow: hidden;
-            width: 85px;
-            display: block;
-            margin: 10px auto;
-            color: #FFF;
-            font-size: 18px;
-            cursor: pointer;
+            background: linear-gradient(-45deg, #f857a6, #ff5858);
         }
     }
     .oauth-login {
-        text-align: center;
         font-size: 14px;
+        text-align: center;
         color: #fff;
         .login-link {
             margin-top: 10px;
@@ -167,32 +165,33 @@
                 display: inline-block;
                 width: 40px;
                 height: 40px;
+                margin: 0 5px;
                 border: 1px #ccc solid;
                 border-radius: 50%;
-                margin: 0 5px;
             }
         }
     }
     .close {
-        background: #474747;
-        height: 30px;
-        width: 30px;
-        border: 3px solid #FFF;
-        border-radius: 50%;
         position: fixed;
         top: -15px;
         right: -15px;
+        width: 30px;
+        height: 30px;
         cursor: pointer;
-        transition: .4s .3s;
-        &:before,&:after {
-            content: '';
-            background: #FFF;
-            height: 80%;
-            width: 3px;
+        transition: 0.4s 0.3s;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        background: #474747;
+        &:before,
+        &:after {
             position: absolute;
             top: 50%;
             left: 50%;
+            width: 3px;
+            height: 80%;
+            content: '';
             transform: translate(-50%, -50%) rotate(-45deg);
+            background: #fff;
         }
         &:after {
             transform: translate(-50%, -50%) rotate(45deg);
@@ -200,33 +199,28 @@
     }
 }
 .ReactModal__Overlay {
-  -webkit-perspective: 600;
-  perspective: 600;
-  opacity: 0;
+    opacity: 0;
+    -webkit-perspective: 600;
+    perspective: 600;
 }
-
 .ReactModal__Overlay--after-open {
-  opacity: 1;
-  transition: opacity 150ms ease-out;
+    transition: opacity 150ms ease-out;
+    opacity: 1;
 }
-
 .ReactModal__Content {
-  -webkit-transform: scale(0.5) rotateX(-30deg);
+    -webkit-transform: scale(.5) rotateX(-30deg);
 }
-
 .ReactModal__Content--after-open {
-  -webkit-transform: scale(1) rotateX(0deg);
-  transition: all 150ms ease-in;
+    transition: all 150ms ease-in;
+    -webkit-transform: scale(1) rotateX(0deg);
 }
-
 .ReactModal__Overlay--before-close {
-  opacity: 0;
+    opacity: 0;
 }
-
 .ReactModal__Content--before-close {
-  -webkit-transform: scale(0.5) rotateX(30deg);
-  transition: all 150ms ease-in;
+    transition: all 150ms ease-in;
+    -webkit-transform: scale(.5) rotateX(30deg);
 }
-::-webkit-scrollbar {
+ ::-webkit-scrollbar {
     display: none;
 }
