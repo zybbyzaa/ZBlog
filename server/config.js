@@ -6,7 +6,7 @@ const config = {
     port: 8089,
     host: 'localhost',
     db: {
-        url: 'mongodb://http://192.168.1.241:27017/zblog'
+        url: 'mongodb://192.168.1.241:27017/zblog'
     },
     session: {
         secrets: 'Zblog-secret',

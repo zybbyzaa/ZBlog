@@ -107,8 +107,7 @@
                     font-size: 0.20rem;
                     line-height: 0.25rem;
                     display: flex;
-                    flex-direction: column;
-                    margin: 0.2rem 0.4rem;
+                    margin: 0 0.4rem;
                     border-bottom: 1px #ddd solid;
                     flex-wrap: wrap;
                     &:last-child {
@@ -121,14 +120,15 @@
                         border-radius: 50%;
                     }
                     .site-comment-listItem-info {
+                        margin-top: 0.2rem;
                         p {
-                            width: 3.6rem;
-                            height: 0.75rem;
+                            width: 320px;
+                            height: 0.4rem;
                             margin: 0;
                         }
                         .meta {
                             font-size: 0.16rem;
-                            height: 0.25rem;
+                            height: 0.2rem;
                             color: #747f8c;
                             a {
                                 cursor: pointer;
@@ -142,6 +142,8 @@
                         border-top: 1px #ddd dashed;
                     }
                     &.reply {
+                        width: 100%;
+                        margin-bottom: 0.2rem;
                         border-top: 1px #ddd solid;
                         .site-comment-listItem-info {
                             width: 3.2rem;
@@ -236,6 +238,53 @@
             color: #666;
             h3 {
                 color: #333;
+            }
+        }
+        &.album-list {
+            .warp {
+                display: flex;
+                max-width: 1200px;
+                margin: 0 auto;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .albumItem {
+                    width: 360px;
+                    margin: 20px auto;
+                    padding: 10px;
+                    border: 1px #ccc solid;
+                    flex-wrap: wrap;
+                    .img-1 {
+                        height: 185px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .img-2 {
+                        height: 185px;
+                        img {
+                            width: 48%;
+                            height: 185px;
+                            margin-right: 2%;
+                        }
+                    }
+                    .img-4 {
+                        height: 185px;
+                        img {
+                            width: 48%;
+                            margin-right: 2%;
+                        }
+                    }
+                    h3 {
+                        margin: 0;
+                    }
+                    p {
+                        line-height: 1.5;
+                        margin: 0;
+                        white-space: normal;
+                        word-wrap: break-word;
+                        color: #aaa;
+                    }
+                }
             }
         }
         .site-content-pageNavigation {

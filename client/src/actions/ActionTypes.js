@@ -17,6 +17,10 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const USERINFO_SUCCESS = 'USERINFO_SUCCESS'
 export const USERINFO_FAILURE = 'USERINFO_FAILURE'
 
+//album action constants
+export const REQUEST_ALBUM_LIST = 'REQUEST_ALBUM_LIST'
+export const ALBUM_LIST = 'ALBUM_LIST'
+
 //comments action constants
 export const SUCCESS_ADD_COMMENT = 'SUCCESS_ADD_COMMENT'
 export const FAILURE_ADD_COMMENT = 'FAILURE_ADD_COMMENT'

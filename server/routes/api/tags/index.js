@@ -5,7 +5,8 @@ const router = require('koa-router')()
 
 router.get('/createTag', function*() {
     let tag = new TagModel({
-        name: 'java'
+        name: 'life',
+        tag_type: 'album'
     })
 
     Tag.createTag(tag)

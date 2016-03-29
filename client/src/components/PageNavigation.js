@@ -22,7 +22,8 @@ class PageNavigation extends Component {
     }
     render() {
         const curPage = this.props.curPage
-        const totalPage = Math.ceil(this.props.count / 3)
+        const perPage = this.props.perPage
+        const totalPage = Math.ceil(this.props.count / perPage)
         const staPoint = this.props.staPoint
         const link = this.renderPage(curPage, totalPage, staPoint)
 

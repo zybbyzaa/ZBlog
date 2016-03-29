@@ -8,8 +8,8 @@ const Album = {
     deleteAlbumById(id) {
         return AlbumModel.findByIdAndRemove(id)
     },
-    getAlbums() {
-        return AlbumModel.find().sort({create_time: -1}).exec()
+    getAlbums(pageNum) {
+        return AlbumModel.find().sort({create_time: -1}).populate({path: 'author', select: 'username avatar'}).limit(6).skip((pageNum - 1) * 6).exec()
     },
     getAlbumById(id) {
         return AlbumModel.findOne({_id: id}).exec()
