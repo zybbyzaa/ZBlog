@@ -12,10 +12,12 @@ const Album = {
         return AlbumModel.find().sort({create_time: -1}).populate({path: 'author', select: 'username avatar'}).limit(6).skip((pageNum - 1) * 6).exec()
     },
     getAlbumById(id) {
-        return AlbumModel.findOne({_id: id}).exec()
+        return AlbumModel.findOne({_id: id}).populate({path: 'author tags', select: 'username avatar name'}).exec()
     },
-    getAlbumCount() {
-        return AlbumModel.count()
+    getAlbumCount(id) {
+        const query = id ? { _id: id} : null
+
+        return AlbumModel.count(query)
     },
     updateAlbum(id, updateCondtion) {
         return AlbumModel.findByIdAndUpdate(id,updateCondtion)

@@ -1,4 +1,4 @@
-import { REQUEST_ALBUM_LIST, ALBUM_LIST } from '../actions/ActionTypes'
+import { REQUEST_ALBUM_LIST, ALBUM_LIST, REQUEST_ALBUM_DETAIL, ALBUM_DETAIL } from '../actions/ActionTypes'
 import { createReducer } from 'redux-immutablejs'
 import { fromJS, Map, List } from 'immutable'
 
@@ -14,6 +14,17 @@ export const albumList = createReducer(initialState,{
         return state.merge({
             isFetching: false,
             items: action.albumList,
+            items_count: action.count
+        })
+    }
+})
+
+export const albumDetail = createReducer(initialState,{
+    [REQUEST_ALBUM_DETAIL]: (state,action)=>state.set('isFetching',true),
+    [ALBUM_DETAIL]: (state,action)=>{
+        return state.merge({
+            isFetching: false,
+            items: action.albumDetail,
             items_count: action.count
         })
     }

@@ -1,4 +1,4 @@
-import { REQUEST_ALBUM_LIST, ALBUM_LIST } from './ActionTypes'
+import { REQUEST_ALBUM_LIST, ALBUM_LIST, REQUEST_ALBUM_DETAIL, ALBUM_DETAIL } from './ActionTypes'
 import fetch from 'isomorphic-fetch'
 import querystring from 'querystring'
 
@@ -26,6 +26,31 @@ export function getAlbumList() {
             then(response => response.json()).
             then(json => {
                 return dispatch(receiveAlbumList(json))
+            })
+    }
+}
+
+function requestAlbumDetail() {
+    return {
+        type: REQUEST_ALBUM_DETAIL
+    }
+}
+
+function receiveAlbumDetail(json) {
+    return {
+        type: ALBUM_DETAIL,
+        albumDetail: json.data,
+        count: json.count
+    }
+}
+export function getAlbumDetail(id) {
+    return (dispatch, getState) => {
+        dispatch(requestAlbumDetail())
+
+        return fetch(host + 'albumDetail/' + id).
+            then(response => response.json()).
+            then(json => {
+                return dispatch(receiveAlbumDetail(json))
             })
     }
 }

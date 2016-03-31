@@ -20,6 +20,8 @@ export const USERINFO_FAILURE = 'USERINFO_FAILURE'
 //album action constants
 export const REQUEST_ALBUM_LIST = 'REQUEST_ALBUM_LIST'
 export const ALBUM_LIST = 'ALBUM_LIST'
+export const REQUEST_ALBUM_DETAIL = 'REQUEST_ALBUM_DETAIL'
+export const ALBUM_DETAIL = 'ALBUM_DETAIL'
 
 //comments action constants
 export const SUCCESS_ADD_COMMENT = 'SUCCESS_ADD_COMMENT'

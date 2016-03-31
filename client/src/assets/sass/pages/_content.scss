@@ -287,6 +287,33 @@
                 }
             }
         }
+        &.album-detail {
+            .warp {
+                position: relative;
+                max-width: 1200px;
+                margin: 0 auto;
+                .item {
+                    float: left;
+                    width: 20%;
+                    margin: 20px auto;
+                    padding: 2%;
+                    border: 1px #ccc solid;
+                    border-radius: 18px;
+                    cursor: pointer;
+                    img {
+                        width: 100%;
+                    }
+                    @media screen and (max-width: 800px) {
+                        width: 28%;
+                        padding: 2%;
+                    }
+                    @media screen and (max-width: 480px) {
+                        width: 90%;
+                        padding: 4%;
+                    }
+                }
+            }
+        }
         .site-content-pageNavigation {
             margin-top: 0.2rem;
             text-align: center;
@@ -349,9 +376,6 @@
                 }
             }
         }
-    }
-    @media screen and (max-width: 480px) {
-        width: auto;
     }
     @media screen and (max-width: 800px) {
         flex-direction: column;

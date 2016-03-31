@@ -9,15 +9,15 @@ class AlbumItem extends Component {
             return (
                 <div className="img-4">{imgs.map((img,i) => {
                     return (
-                        <img src={img} alt={'img' + i}/>
+                        <img src={img} alt={'img' + i} key={i}/>
                     )
                 })}</div>
             )
         }else if (imgs.length < 4 && imgs.length > 1) {
             return (
-                <div className="img-2">{imgs.map((img,i) => {
+                <div className="img-2">{imgs.slice(0,2).map((img,i) => {
                     return (
-                        <img src={img} alt={'img' + i}/>
+                        <img src={img} alt={'img' + i} key={i}/>
                     )
                 })}</div>
             )
@@ -25,7 +25,7 @@ class AlbumItem extends Component {
             return (
                 <div className="img-1">{imgs.map((img,i) => {
                     return (
-                        <img src={img} alt={'img' + i}/>
+                        <img src={img} alt={'img' + i} key={i}/>
                     )
                 })}</div>
             )

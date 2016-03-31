@@ -41,6 +41,9 @@ class App extends Component {
         }
         window.location.href = search
     }
+    hideMask(e) {
+        this.refs['img-big'].parentNode.style.display = 'none'
+    }
     render() {
         const {location, options, optionsActions, auth, authActions} = this.props
         const customStyles = {
@@ -83,6 +86,9 @@ class App extends Component {
                 </div>
                 <Footer />
                 <ScrollTop />
+                <div className="mask" onClick={e => {this.hideMask(e)}}>
+                    <img src="" alt="img" ref='img-big' className='img-big'/>
+                </div>
                 <Modal isOpen={options.isShowLoginModal} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
                     <h3>ZBlog</h3>
                     <form className='login-form' name='loginForm' onSubmit={this.handleSubmit.bind(this)} noValidates>

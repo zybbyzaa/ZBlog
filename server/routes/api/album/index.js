@@ -30,4 +30,20 @@ router.get('/albumList', function*() {
     }
 
 })
+router.get('/albumDetail/:id', function*() {
+    let id = this.params.id
+
+    try {
+        const album = yield Album.getAlbumById(id)
+        const count = yield Album.getAlbumCount(id)
+
+        this.status = 200
+        this.body = {
+            data: album,
+            count: count
+        }
+    } catch (err) {
+        this.throw(err)
+    }
+})
 export default router
