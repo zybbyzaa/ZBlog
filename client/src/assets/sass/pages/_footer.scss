@@ -1,15 +1,21 @@
 .site-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 0.3rem;
     line-height: 1.2;
-    height: 2rem;
     padding: 1rem 0;
     text-align: center;
     border-top: 1px #eee solid;
     background-color: #393c40;
+    flex: 1;
     .copyright {
         color: #777;
         a {
-            color: #404040;
+            color: #777;
+            &:hover {
+                color: #fff;
+            }
         }
     }
     @media screen and (max-width: 480px) {

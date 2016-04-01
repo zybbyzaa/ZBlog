@@ -18,6 +18,7 @@ class PageNavigation extends Component {
         if (curPage < totalPage) {
             link.push(<Link to={staPoint + '/page/' + (curPage + 1) } className='site-content-pageNavigation-link' title='下一页' key={totalPage + 1}>&gt;&gt;</Link>)
         }
+        console.log(curPage + totalPage + staPoint)
         return link
     }
     render() {

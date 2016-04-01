@@ -364,24 +364,11 @@
         margin-left: 0.2rem;
         padding: 10px;
         border: 1px #eee solid;
-        .site-search {
-            input {
-                width: 160px;
-                height: 20px;
-                padding: 0 10px;
-                border: 1px #eee solid;
-                border-radius: 10px;
-                &:focus {
-                    outline: 0;
-                }
-            }
-        }
     }
     @media screen and (max-width: 800px) {
         flex-direction: column;
         .site-content-aside {
-            width: 97%;
-            margin: 0.2rem auto;
+            display: none;
         }
     }
 }

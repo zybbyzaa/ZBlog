@@ -27,9 +27,11 @@ app.use(cors({
 }))
 app.use(parser())
 app.use(json())
-app.use(staticServe('./client/dist'))
+app.use(staticServe('./client/dist', {
+    maxage: 7 * 24 * 3600000
+}))
 app.use(staticServe('./server/assets', {
-    maxage: 1296000
+    maxage: 7 * 24 * 3600000
 }))
 app.keys = [config.session.secrets]
 app.use(session({

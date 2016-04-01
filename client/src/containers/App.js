@@ -68,8 +68,6 @@ class App extends Component {
                 outline: 'none',
                 margin: 'auto',
                 padding: '25px',
-                width: '325px',
-                height: '400px',
                 background: 'rgba(71, 71, 71, 0.8)'
             }
         }
@@ -79,16 +77,29 @@ class App extends Component {
                 <NavbarButton isShowNav={options.isShowNav} toggleNav={optionsActions.toggleNav}/>
                 <Navbar />
                 <Header location={location} user={auth.user || null} logout={authActions.logout} toggleModal={optionsActions.toggleLoginModal}/>
-                <div className="site-content">
-                    { this.props.children }
-                    <aside className="site-content-aside">
-                    </aside>
-                </div>
+                {
+                    location.pathname.split('/')[1] === '' ?
+                    null
+                    :
+                    <div className="site-content">
+                        { this.props.children }
+                        <aside className="site-content-aside">
+                        </aside>
+                    </div>
+                }
+
                 <Footer />
                 <ScrollTop />
-                <div className="mask" onClick={e => {this.hideMask(e)}}>
-                    <img src="" alt="img" ref='img-big' className='img-big'/>
-                </div>
+                {
+                    location.pathname.split('/')[1] === 'album' ?
+                    <div className="mask" onClick={e => {
+                        this.hideMask(e)
+                    }}>
+                        <img src="" alt="img" ref='img-big' className='img-big'/>
+                    </div>
+                    :
+                    null
+                }
                 <Modal isOpen={options.isShowLoginModal} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
                     <h3>ZBlog</h3>
                     <form className='login-form' name='loginForm' onSubmit={this.handleSubmit.bind(this)} noValidates>

@@ -116,20 +116,6 @@
         background-color: rgba(0, 0, 0, .5);
     }
 }
-.mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,.4);
-    z-index: 999;
-    display: none;
-    img {
-        width: 100%;
-        position: absolute;
-    }
-}
 .ReactModalPortal > div > div {
     box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
     h3 {
@@ -141,7 +127,8 @@
     form {
         label {
             font: 500 14px Roboto;
-            color: #fb5781;
+            color: #fff;
+            font-weight: bold;
         }
         input {
             font-size: 20px;
@@ -166,7 +153,7 @@
             border: none;
             border-radius: 21px;
             outline: none;
-            background: linear-gradient(-45deg, #f857a6, #ff5858);
+            background: linear-gradient(-45deg, #00ef89, #03fe49);
         }
     }
     .oauth-login {
@@ -216,6 +203,16 @@
     opacity: 0;
     -webkit-perspective: 600;
     perspective: 600;
+    & > div {
+        width: 325px;
+        height: 400px;
+    }
+    @media screen and (max-width: 480px) {
+        & > div {
+            width: calc(100% - 100px);
+            height: 360px;
+        }
+    }
 }
 .ReactModal__Overlay--after-open {
     transition: opacity 150ms ease-out;

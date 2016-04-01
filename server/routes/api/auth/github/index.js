@@ -29,6 +29,7 @@ router.get('/callback', function*(next) {
             ctx.cookies.set('token',token,{ path: '/',maxAge: 3600000, httpOnly: false })
         }
         ctx.cookies.set('snsmsg',JSON.stringify(snsmsg),{ path: '/',maxAge: 3600000 })
+        console.log(user)
         ctx.session.passport = {user: user._id}
         return ctx.redirect(redirectUrl)
     }).call(this, next)

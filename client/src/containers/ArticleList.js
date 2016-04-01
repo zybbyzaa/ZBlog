@@ -71,7 +71,7 @@ class ArticleList extends Component {
                 {
                     this.props.articles.isFetching ? null : this.renderArticle(articles, count)
                 }
-                <PageNavigation curPage={this.props.options.articleQuery.currentPage} count={count} staPoint='/article'></PageNavigation>
+                <PageNavigation curPage={this.props.options.articleQuery.currentPage} count={count} staPoint='/article' perPage={3}></PageNavigation>
             </section>
         )
     }

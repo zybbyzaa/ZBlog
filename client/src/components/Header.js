@@ -39,7 +39,7 @@ class Header extends Component {
     renderAvatar() {
         if(!isLogin() || this.props.user === null){
             console.log('logout')
-            return(
+            return (
                 <div className="site-header-avatar">
                     <a className='logout' onClick={this.openModal.bind(this)}>登录</a>
                 </div>
@@ -58,11 +58,24 @@ class Header extends Component {
         const content = this.renderAvatar()
 
         return (
-          <header className={'site-header ' + this.handleBg() }>
+          <header className={'site-header ' + this.handleBg() + (location.pathname.split('/')[1] !== '' ? '' : ' flexfix')}>
               <a href="/" className="site-header-logo">ZBlog</a>
               <h1 className='site-header-title'>{this.handleText()}</h1>
-              { content }
-              <hr/>
+              {
+                  location.pathname.split('/')[1] !== '' ?
+                  content
+                  :
+                  <section className='site-search'>
+                      <input type="text" placeholder='搜索文章...'/>
+                      <a className='site-search-btn'>搜索</a>
+                      <ul className='site-search-type'>
+                          <h3>请选择搜索类别</h3>
+                          <li>文章</li>
+                          <li>相册</li>
+                          <li>音乐</li>
+                      </ul>
+                  </section>
+              }
           </header>
         )
     }
