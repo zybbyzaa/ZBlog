@@ -2,14 +2,14 @@ import cookie from 'react-cookie'
 
 const cookieConfig = {
     maxage: 86400,
-    httpOnly: true,
+    httpOnly: false,
     path: '/',
     overwrite: true,
     signed: true
 }
 
 export function saveCookie(name,value) {
-    cookie.save(name, value, {path: '/', maxAge: 2 * 3600 * 1000, domain: 'localhost'})
+    cookie.save(name, value, {path: '/', maxAge: 2 * 3600, domain: 'localhost'})
 }
 
 export function getCookie(name) {
@@ -17,7 +17,7 @@ export function getCookie(name) {
 }
 
 export function removeCookie(name) {
-    cookie.remove(name, {path: '/', maxAge: 2 * 3600 * 1000})
+    cookie.remove(name, {path: '/', maxAge: 2 * 3600})
 }
 
 export function isLogin() {

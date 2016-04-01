@@ -1,15 +1,8 @@
-/**
- *
- * @authors zyb (zybbyzaa@163.com)
- * @date    2016-02-01 11:43:43
- * @version $Id$
- */
-
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import * as articlesActions from '../actions/articles'
 import * as optionsActions from '../actions/options'
-import {bindActionCreators} from 'redux'
 import {ClipLoader} from 'halogen'
 import ArticleItem from '../components/ArticleItem'
 import PageNavigation from '../components/PageNavigation'
@@ -21,6 +14,9 @@ class ArticleList extends Component {
             ? Number(this.props.params.pageNum)
             : 1
 
+        if (!this.props.location.query.isSearch) {
+            this.props.actions.search('article', '')
+        }
         this.props.actions.changePageNum(pageNum)
         this.props.actions.getArticleList()
     }
@@ -34,6 +30,10 @@ class ArticleList extends Component {
 
         if (oldPageNum !== newPageNum) {
             this.props.actions.changePageNum(newPageNum)
+            this.props.actions.getArticleList()
+        }
+        if (this.props.location.query.isSearch !== nextProps.location.query.isSearch && !nextProps.location.query.isSearch) {
+            this.props.actions.setKeyword('article', '')
             this.props.actions.getArticleList()
         }
     }
@@ -80,7 +80,8 @@ class ArticleList extends Component {
 function mapStateToProps(state) {
     return {
         articles: state.articleList.toJS(),
-        options: state.options.toJS()
+        options: state.options.toJS(),
+        location: state.routing.location
     }
 }
 

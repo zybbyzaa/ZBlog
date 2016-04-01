@@ -38,6 +38,7 @@ class CommentList extends Component {
         const content = this.refs['comment' + i].value
 
         this.props.commentActions.addReply(cid, {content: content})
+        this.refs['comment' + i].value = ''
         eleForm.className += ' hidden'
     }
     openModal() {

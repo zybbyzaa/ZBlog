@@ -1,10 +1,3 @@
-/**
- *
- * @authors zyb (zybbyzaa@163.com)
- * @date    2016-02-07 23:57:03
- * @version $Id$
- */
-
 import React, { Component, PropTypes } from 'react'
 import { isLogin } from '../utils/authService'
 
@@ -36,6 +29,16 @@ class Header extends Component {
     openModal() {
         this.props.toggleModal(true)
     }
+    search(type) {
+        const keyword = this.refs['keyword'].value
+
+        console.log('type => ' + type)
+        console.log('text => ' + keyword)
+        this.refs['keyword'].className = 'active'
+        if (keyword !== '') {
+            this.props.search(type, keyword)
+        }
+    }
     renderAvatar() {
         if(!isLogin() || this.props.user === null){
             console.log('logout')
@@ -46,7 +49,7 @@ class Header extends Component {
             )
         } else {
             console.log('login')
-            return(
+            return (
                 <div className="site-header-avatar">
                     <img src={this.props.user.avatar} alt="avatar"/>
                     <a onClick={this.handleClick.bind(this)}>登出</a>
@@ -66,14 +69,8 @@ class Header extends Component {
                   content
                   :
                   <section className='site-search'>
-                      <input type="text" placeholder='搜索文章...'/>
-                      <a className='site-search-btn'>搜索</a>
-                      <ul className='site-search-type'>
-                          <h3>请选择搜索类别</h3>
-                          <li>文章</li>
-                          <li>相册</li>
-                          <li>音乐</li>
-                      </ul>
+                      <input type="text" placeholder='搜索文章...' ref='keyword'/>
+                      <a className='site-search-btn' onClick={e => {this.search('article')}}>搜索</a>
                   </section>
               }
           </header>

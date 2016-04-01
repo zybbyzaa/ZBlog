@@ -14,6 +14,8 @@ class CommentEditor extends Component {
         const commentInfo = {aid: this.props.aid, content: comment.value}
 
         this.props.commentActions.addComment(commentInfo)
+
+        comment.value = ''
     }
     openModal() {
         this.props.toggleModal(true)

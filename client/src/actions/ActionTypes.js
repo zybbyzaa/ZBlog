@@ -2,6 +2,7 @@
 export const CHANGEPAGENUM = 'CHANGEPAGENUM'
 export const TOGGLENAV = 'TOGGLENAV'
 export const TOGGLELOGINMODAL = 'TOGGLELOGINMODAL'
+export const SEARCH = 'SEARCH'
 
 //articles action constants
 export const REQUEST_ARTICLE_LIST = 'REQUEST_ARTICLE_LIST'
@@ -9,6 +10,7 @@ export const ARTICLE_LIST = 'ARTICLE_LIST'
 export const REQUEST_ARTICLE_DETAIL = 'REQUEST_ARTICLE_DETAIL'
 export const ARTICLE_DETAIL = 'ARTICLE_DETAIL'
 export const ARTICLE_PRENEXT = 'ARTICLE_PRENEXT'
+export const ARTICLE_SEARCH = 'ARTICLE_SEARCH'
 
 //auth action constants
 export const LOGOUT_USER = 'LOGOUT_USER'

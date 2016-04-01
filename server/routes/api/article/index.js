@@ -4,10 +4,12 @@ const router = require('koa-router')()
 
 router.get('/articleList', function*() {
     let currentPage = (parseInt(this.query.currentPage,10) > 0) ? parseInt(this.query.currentPage,10) : 1
+    let keyword = this.query.keyword
+    const query = keyword === '' ? {} : {title: new RegExp(keyword, 'i')}
 
     try {
-        const articles = yield Article.getArticles(currentPage)
-        const count = yield Article.getArticleCount()
+        const articles = yield Article.getArticles(currentPage, keyword)
+        const count = yield Article.getArticleCount(query)
 
         this.status = 200
         this.body = {
@@ -21,10 +23,11 @@ router.get('/articleList', function*() {
 })
 router.get('/articleDetail/:id', function*() {
     let id = this.params.id
+    const query = {_id: id}
 
     try {
         const article = yield Article.getArticleById(id)
-        const count = yield Article.getArticleCount(id)
+        const count = yield Article.getArticleCount(query)
 
         article.views++
         yield Article.updateArticle(id,{$inc: {views: 1}})

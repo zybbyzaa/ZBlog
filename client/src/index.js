@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
-import configureStore from './store/configureStore'
 import {Router, browserHistory, Route, IndexRoute} from 'react-router'
+import configureStore from './store/configureStore'
 import showDevTools from './containers/showDevTools'
-import { App, Home, Article, ArticleList, ArticleDetail, Album, AlbumList, AlbumDetail, Music, Message, About, Login } from './containers'
+import { App, Home, Article, ArticleList, ArticleDetail, Album, AlbumList, AlbumDetail, Music, About } from './containers'
 
 const store = configureStore()
 

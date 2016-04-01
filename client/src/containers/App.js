@@ -1,43 +1,43 @@
-/**
- *
- * @authors zyb (zybbyzaa@163.com)
- * @date    2016-02-01 11:36:42
- * @version $Id$
- */
-
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import * as optionsActions from '../actions/options'
 import * as authActions from '../actions/auth'
-import {bindActionCreators} from 'redux'
+import { isLogin, getCookie } from '../utils/authService'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import NavbarButton from '../components/NavbarButton'
 import ScrollTop from '../components/ScrollTop'
 import Footer from '../components/Footer'
-import '../assets/sass/app.scss'
-import { isLogin, getCookie } from '../utils/authService'
 import Modal from 'react-modal'
+import '../assets/sass/app.scss'
 
 class App extends Component {
 
+    constructor(props){
+        super(props)
+    }
     componentDidMount() {
-        if( isLogin() && this.props.auth.user === null){
-            this.props.authActions.getUserInfo(this.props.auth.token)
-            console.log('user')
+        const { auth, authActions } = this.props
+
+        if(isLogin() && auth.user === null){
+            authActions.getUserInfo(auth.token)
         }
     }
     closeModal() {
-        this.props.optionsActions.toggleLoginModal(false)
+        const { optionsActions } = this.props
+
+        optionsActions.toggleLoginModal(false)
     }
     snsLogin(e,provider) {
         e.preventDefault()
 
         const host = __DEVELOPMENT__ ? '//localhost:8088/api/auth/' : '/api/auth/'
-        let search = host + provider + '?redirectUrl=' + window.location.origin
         const token = getCookie('token')
+        let search = host + provider + '?redirectUrl=' + window.location.origin
+
         if(token) {
-            search += '&access_token=' + token.replace(/(^\")|(\"$)/g, "")
+            search += '&access_token=' + token.replace(/(^\')|(\'$)/g, '')
         }
         window.location.href = search
     }
@@ -45,7 +45,7 @@ class App extends Component {
         this.refs['img-big'].parentNode.style.display = 'none'
     }
     render() {
-        const {location, options, optionsActions, auth, authActions} = this.props
+        const {location, options, optionsActions, auth, authActions, children} = this.props
         const customStyles = {
             overlay: {
                 position: 'fixed',
@@ -73,17 +73,19 @@ class App extends Component {
         }
 
         return (
-            <div className='site' onClick={this.handleClick.bind(this)}>
+            <div className='site' onClick={e => {
+                this.handleClick(e)
+            }}>
                 <NavbarButton isShowNav={options.isShowNav} toggleNav={optionsActions.toggleNav}/>
                 <Navbar />
-                <Header location={location} user={auth.user || null} logout={authActions.logout} toggleModal={optionsActions.toggleLoginModal}/>
+                <Header location={location} user={auth.user || null} logout={authActions.logout} toggleModal={optionsActions.toggleLoginModal} search={optionsActions.search}/>
                 {
                     location.pathname.split('/')[1] === '' ?
                     null
                     :
-                    <div className="site-content">
-                        { this.props.children }
-                        <aside className="site-content-aside">
+                    <div className='site-content'>
+                        { children }
+                        <aside className='site-content-aside'>
                         </aside>
                     </div>
                 }
@@ -92,32 +94,32 @@ class App extends Component {
                 <ScrollTop />
                 {
                     location.pathname.split('/')[1] === 'album' ?
-                    <div className="mask" onClick={e => {
+                    <div className='mask' onClick={e => {
                         this.hideMask(e)
                     }}>
-                        <img src="" alt="img" ref='img-big' className='img-big'/>
+                        <img src='' alt='img' ref='img-big' className='img-big'/>
                     </div>
                     :
                     null
                 }
-                <Modal isOpen={options.isShowLoginModal} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
+                <Modal isOpen={options.isShowLoginModal} onRequestClose={() => {this.closeModal()}} style={customStyles}>
                     <h3>ZBlog</h3>
-                    <form className='login-form' name='loginForm' onSubmit={this.handleSubmit.bind(this)} noValidates>
+                    <form className='login-form' name='loginForm' onSubmit={e => {this.handleSubmit(e)}} noValidates>
                         <label htmlFor='email'>Email Address</label>
-                        <input type="text" id='email' className='login-email' placeholder='请输入邮箱' ref='email' required/>
+                        <input type='text' id='email' className='login-email' placeholder='请输入邮箱' ref='email' required/>
                         <label htmlFor='pass'>Password</label>
-                        <input type="password" id='pass' className='login-pass' placeholder='请输入密码' ref='pass' required/>
-                        <button type="submit" className='login-submit'>登 录</button>
+                        <input type='password' id='pass' className='login-pass' placeholder='请输入密码' ref='pass' required/>
+                        <button type='submit' className='login-submit'>登 录</button>
                         <hr />
                     </form>
                     <div className='oauth-login'>
                         <span>使用其他方式登录</span>
                         <div className='login-link'>
-                            <a href="#" className='login-github-link' onClick={e=>this.snsLogin(e,'github')}>G</a>
-                            <a href="#" className='login-webchat-link'>W</a>
+                            <a href='#' className='login-github-link' onClick={e=>this.snsLogin(e,'github')}>G</a>
+                            <a href='#' className='login-webchat-link'>W</a>
                         </div>
                     </div>
-                    <div className="close" onClick={this.closeModal.bind(this)}></div>
+                    <div className='close' onClick={() => {this.closeModal()}}></div>
                 </Modal>
             </div>
         )

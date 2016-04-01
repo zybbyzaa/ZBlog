@@ -30,7 +30,7 @@ export default createReducer(initialState,{
     [SUCCESS_ADD_COMMENT]: (state,action)=>{
         return state.merge({
             errMsg: null,
-            items: state.get('items').push(action.comment)
+            items: state.get('items').unshift(action.comment)
         })
     },
     [FAILURE_ADD_COMMENT]: (state,action)=>state.set('errMsg',action.errMsg),
@@ -38,7 +38,7 @@ export default createReducer(initialState,{
         return state.mergeDeep({
             errMsg: null,
             items: state.get('items').map(item => {
-                if (item.get('_id') === action.cid) {
+                if (item.toJS()._id === action.cid) {
                     return item.set('replys', action.replys)
                 }
                 return item

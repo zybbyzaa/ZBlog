@@ -24,6 +24,8 @@
         font-size: 1.2rem;
         margin: 0.5rem auto;
         color: #fff;
+        transition: transform 0.8s ease-out;
+        animation: site-header-title-animation 0.8s ease-out forwards;
     }
     .site-header-avatar {
         position: relative;
@@ -32,6 +34,8 @@
         height: 1.5rem;
         margin: 0.5rem auto;
         border-radius: 50%;
+        transition: transform 0.8s ease-out;
+        animation: site-header-avatar-animation 0.8s ease-out forwards;
         img {
             display: block;
             width: 100%;
@@ -67,26 +71,31 @@
         margin: 20px auto 30px;
         position: relative;
         input {
-            width: 240px;
+            width: 10px;
             height: 36px;
             padding: 0 20px;
             border: 1px #eee solid;
             border-radius: 18px;
+            opacity: 0;
             &:focus {
                 outline: 0;
             }
-            transition: opacity 0.2s ease-out;
-            animation: search-input-animation 0.8s ease-out forwards;
+            transition: opacity 0.2s ease-out,width 0.8s ease-out;
+            &.active {
+                width: 240px;
+                animation: search-input-animation 0.8s ease-out both;
+            }
         }
         .site-search-btn {
             display: inline-block;
             width: 60px;
             height: 36px;
             border-radius: 18px;
+            border: 1px #0f9 solid;
             color: #fff;
             background-color: #0f9;
             line-height: 36px;
-            margin-left: 20px;
+            margin-left: -60px;
             transition: opacity 0.2s ease-out;
             animation: search-input-animation 0.8s ease-out 0.8s both;
         }
@@ -139,6 +148,9 @@
         .site-search {
             input {
                 width: 160px;
+                &.active {
+                    width: 160px;
+                }
             }
             .site-search-btn {
                 display: block;
@@ -161,5 +173,21 @@
     }
     100% {
         opacity: 1;
+    }
+}
+@keyframes site-header-title-animation {
+    0% {
+        transform: translate3d(-300%,0,0);
+    }
+    100% {
+        transform: translate3d(0,0,0);
+    }
+}
+@keyframes site-header-avatar-animation {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
     }
 }

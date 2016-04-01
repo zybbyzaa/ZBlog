@@ -1,11 +1,3 @@
-/**
- *
- * @authors zyb (zybbyzaa@163.com)
- * @date    2016-02-01 11:43:43
- * @version $Id$
- */
-
-//import '../assets/less/about.less'
 import React, {Component, PropTypes} from 'react'
 
 class About extends Component {
