@@ -66,8 +66,7 @@ router.get('/create', function*() {
     let data = {
         title: 'test',
         content: 'sssssssssssssssssssssss',
-        description: 'test',
-        tags: ['web', 'nodejs', 'java']
+        description: 'test'
     }
 
     Article.createArticle(data)

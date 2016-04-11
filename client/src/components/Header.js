@@ -40,6 +40,7 @@ class Header extends Component {
         console.log('type => ' + type)
         console.log('text => ' + keyword)
         this.refs['keyword'].className = 'active'
+        document.querySelector('.site-search-btn').className = 'site-search-btn active'
         document.querySelector('.site-change-btn').className = 'site-change-btn active'
         if (keyword !== '') {
             this.props.search(type, keyword)
@@ -57,8 +58,6 @@ class Header extends Component {
         }
     }
     clickList(e) {
-        const placeText = '搜索' + e.target.innerHTML + '...'
-
         switch (e.target.innerHTML) {
             case '文章':
                 this.refs['stype'].value = 'article'
@@ -72,7 +71,7 @@ class Header extends Component {
             default:
         }
         this.showList(e,false)
-        this.refs['keyword'].setAttribute('placeholder', placeText)
+        document.querySelector('.site-change-btn').innerHTML = e.target.innerHTML
     }
     renderAvatar() {
         if(!isLogin() || this.props.user === null){
@@ -104,10 +103,10 @@ class Header extends Component {
                   content
                   :
                   <section className='site-search'>
-                      <input type="text" placeholder='搜索文章...' ref='keyword'/>
+                      <input type="text" placeholder='搜索关键词...' ref='keyword'/>
                       <input type="hidden" ref='stype' value='article'/>
                       <a className='site-search-btn' onClick={e => {this.search()}}>搜索</a>
-                      <a className='site-change-btn' onClick={e => {this.showList(e)}}></a>
+                      <a className='site-change-btn' onClick={e => {this.showList(e)}}>文章</a>
                       <ul className='site-search-type' ref='search_type' onClick={e => {this.clickList(e)}}>
                           <li>文章</li>
                           <li>相册</li>

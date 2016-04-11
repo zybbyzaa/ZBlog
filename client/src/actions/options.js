@@ -32,8 +32,10 @@ export function setKeyword(searchType, text) {
 }
 
 export function search(search_type, text) {
+    const path = '/' + search_type
+
     return (dispatch, getState) => {
         dispatch(setKeyword(search_type, text))
-        return dispatch(push({pathname: '/article', query: {isSearch: true}}))
+        return dispatch(push({pathname: path, query: {isSearch: true}}))
     }
 }

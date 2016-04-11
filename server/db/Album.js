@@ -8,15 +8,15 @@ const Album = {
     deleteAlbumById(id) {
         return AlbumModel.findByIdAndRemove(id)
     },
-    getAlbums(pageNum) {
-        return AlbumModel.find().sort({create_time: -1}).populate({path: 'author', select: 'username avatar'}).limit(6).skip((pageNum - 1) * 6).exec()
+    getAlbums(pageNum, keyword) {
+        const condition = keyword === '' ? {} : {name: new RegExp(keyword, 'i')}
+
+        return AlbumModel.find(condition).sort({create_time: -1}).populate({path: 'author', select: 'username avatar'}).limit(6).skip((pageNum - 1) * 6).exec()
     },
     getAlbumById(id) {
         return AlbumModel.findOne({_id: id}).populate({path: 'author tags', select: 'username avatar name'}).exec()
     },
-    getAlbumCount(id) {
-        const query = id ? { _id: id} : null
-
+    getAlbumCount(query) {
         return AlbumModel.count(query)
     },
     updateAlbum(id, updateCondtion) {

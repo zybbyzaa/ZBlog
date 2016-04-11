@@ -15,10 +15,12 @@ router.get('/createAlbum', function*() {
 })
 router.get('/albumList', function*() {
     let currentPage = (parseInt(this.query.currentPage,10) > 0) ? parseInt(this.query.currentPage,10) : 1
+    let keyword = this.query.keyword
+    const query = keyword === '' ? {} : {name: new RegExp(keyword, 'i')}
 
     try {
-        const albums = yield Album.getAlbums(currentPage)
-        const count = yield Album.getAlbumCount()
+        const albums = yield Album.getAlbums(currentPage, keyword)
+        const count = yield Album.getAlbumCount(query)
 
         this.status = 200
         this.body = {

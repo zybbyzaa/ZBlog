@@ -14,6 +14,9 @@ class AlbumList extends Component {
             ? Number(this.props.params.pageNum)
             : 1
 
+        if (!this.props.location.query.isSearch) {
+            this.props.actions.search('album', '')
+        }
         this.props.actions.changePageNum(pageNum,'album')
         this.props.actions.getAlbumList()
     }
@@ -27,6 +30,10 @@ class AlbumList extends Component {
 
         if (oldPageNum !== newPageNum) {
             this.props.actions.changePageNum(newPageNum,'album')
+            this.props.actions.getAlbumList()
+        }
+        if (this.props.location.query.isSearch !== nextProps.location.query.isSearch && !nextProps.location.query.isSearch) {
+            this.props.actions.setKeyword('album', '')
             this.props.actions.getAlbumList()
         }
     }
@@ -75,7 +82,8 @@ class AlbumList extends Component {
 function mapStateToProps(state) {
     return {
         albums: state.albumList.toJS(),
-        options: state.options.toJS()
+        options: state.options.toJS(),
+        location: state.routing.location
     }
 }
 

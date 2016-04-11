@@ -34,9 +34,6 @@ export default createReducer(initialState,{
                 return state.updateIn(['albumQuery', 'keyword'], value => action.text)
             case 'song':
                 return state.updateIn(['songQuery', 'keyword'], value => action.text)
-            default:
-                break
-
         }
     }
 })
